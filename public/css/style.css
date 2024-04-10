@@ -1,0 +1,51 @@
+* {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 0;
+}
+.clear {
+    clear: both;
+}
+body {
+    background-color: black;
+    margin-top: 80px;
+}
+/* css do menu */
+nav {
+    width: 100%;
+    top: 0;
+    position: fixed;
+    padding: 20px 20px 20px 20px;
+    background-color: black;
+}
+nav h1 {
+    float: left;
+}
+.boxBtnLangs {
+    float: right;
+    list-style: none;
+    padding-right: 40px;
+}
+.boxBtnLangs li {
+    display: inline-block;
+}
+.boxBtnMenu {
+    list-style: none;
+}
+.boxBtnMenu li {
+    display: inline-block;
+}
+.btnMenu {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    background-color: rgb(81, 0, 128);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    margin: 0px 10px 0px 10px;
+}
+/* css do carrossel principal */
