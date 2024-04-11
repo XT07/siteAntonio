@@ -48,4 +48,96 @@ nav h1 {
     padding: 10px 10px 10px 10px;
     margin: 0px 10px 0px 10px;
 }
+.btnMenu:hover {
+    background-color: rgb(61, 0, 97);
+    cursor: pointer;
+}
 /* css do carrossel principal */
+.slider{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding: 0 !important;
+    overflow: hidden;
+}
+.slider-content {
+    width: 400%;
+    height: auto;
+    display: flex;
+}
+.slider-content input {
+    display: none;
+}
+.slide-box {
+    width: 25%;
+    height: 500px;
+    text-align: center;
+    transform: translateY(-50%);
+    transition: 2s;
+}
+.slide-box img {
+    width: 100%;
+}
+#radio1:checked ~ .nav-auto .auto-btn1 {
+    background-color: white;
+}
+#radio2:checked ~ .nav-auto .auto-btn2 {
+    background-color: white;
+}
+#radio3:checked ~ .nav-auto .auto-btn3 {
+    background-color: white;
+}
+#radio1:checked ~ .mov1 {
+    margin-left: 0%;
+}
+#radio2:checked ~ .mov1 {
+    margin-left: -25%;
+}
+#radio3:checked ~ .mov1 {
+    margin-left: -50%;
+}
+/* estilizando os botões do carrossel */
+.nav-manual, .nav-auto {
+    position: absolute;
+    width: 100%;
+    margin-top: 510px;
+    display: flex;
+    justify-content: center;
+}
+.nav-manual .manual-btn, .nav-auto div {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.nav-manual .manual-btn:hover {
+    background-color: white;
+}
+.nav-manual .manual-btn:not(:last-child), .nav-auto div:not(:last-child){
+    margin-right: 10px;
+}
+/* css do about */
+.col {
+    width: 46%;
+    float: left;
+    padding: 20px 20px 20px 50px;
+}
+.col li {
+    margin: 0px 0px 0px 50px;
+}
+.col h3 {
+    font-size: 30px;
+}
+.colContent {
+    margin: 0px 0px 0px 250px;
+}
+.titleAbout {
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+hr {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid white;
+}
