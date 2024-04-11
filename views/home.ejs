@@ -1,43 +1,18 @@
 <%- include("partials/header.ejs") %>
 <%- include("partials/menu.ejs") %>
 <body>
-    <section class="slider">
-        <div class="slider-content">
-
-            <!-- indicador da posição -->
-            <input type="radio" name="btn-radio" id="radio1" checked>
-            <input type="radio" name="btn-radio" id="radio2">
-            <input type="radio" name="btn-radio" id="radio3">
-
-            <!-- imagens -->
-            <div class="slide-box mov1">
-                <img src="img/temp.jpg">
-            </div>
-            <div class="slide-box">
-                <img src="img/team.jpg">
-            </div>
-            <div class="slide-box">
-                <img src="img/temp.jpg">
-            </div>
-
-            <!-- controler automático -->
-            <div class="nav-auto">
-                <div class="auto-btn1"></div>
-                <div class="auto-btn2"></div>
-                <div class="auto-btn3"></div>
-            </div>
-
-            <!-- controler manual -->
-            <div class="nav-manual">
-                <label for="radio1" class="manual-btn"></label>
-                <label for="radio2" class="manual-btn"></label>
-                <label for="radio3" class="manual-btn"></label>
-            </div>
-        </div>
-    </section>
+    <!-- Carrossel principal -->
+    <%- include("partials/mainCarousel.ejs") %>
+    <!-- Mini carrossel de eventos de entreterimento e cultural -->
+    <%- include("partials/miniCarousel.ejs") %>
+    <!-- Mini carrossel de eventos sociais -->
+    <%- include("partials/miniCarousel2.ejs") %>
+    <!-- Mini carrossel de eventos esporitvos -->
+    <%- include("partials/miniCarousel3.ejs") %>
 </body>
 <%- include("partials/footer.ejs") %>
 <script>
+    //script do carrossel principal
     let radio = document.querySelector(".manual.btn");
     let cont = 1;
 
@@ -52,6 +27,88 @@
             cont = 1;
         }
         document.getElementById(`radio${cont}`).checked = true;
+    }
+
+    //script do mini carrossel 1
+    let setaEsquerda = document.getElementById("seta-esquerda-c1");
+    let setaDireita = document.getElementById("seta-direita-c1");
+    let contC1 = 1;
+
+    setaEsquerda.addEventListener("click", movEsq);
+    setaDireita.addEventListener("click", movDir);
+
+    function movEsq(){
+        contC1--;
+
+        if(contC1 < 1){
+            contC1 = 1;
+        }
+        document.getElementById(`mini-radio${contC1}`).checked = true;
+        console.log("Clicou esquerda");
+        console.log(contC1);
+    }
+
+    function movDir(){
+        contC1++;
+
+        if(contC1 > 10){
+            contC1 = 1;
+        }
+        document.getElementById(`mini-radio${contC1}`).checked = true;
+        console.log("Clicou direita");
+        console.log(contC1);
+    }
+
+    //script mini carrossel 2
+    let setaEsquerda2 = document.getElementById("seta2-esquerda-c2");
+    let setaDireita2 = document.getElementById("seta2-direita-c2");
+    let contC2 = 1;
+
+    setaEsquerda2.addEventListener("click", movEsq2);
+    setaDireita2.addEventListener("click", movDir2);
+
+    function movEsq2(){
+        contC2--;
+
+        if(contC2 < 1){
+            contC2 = 1;
+        }
+        document.getElementById(`mini2-radio${contC2}`).checked = true;
+    }
+
+    function movDir2(){
+        contC2++;
+
+        if(contC2 > 10){
+            contC2 = 1;
+        }
+        document.getElementById(`mini2-radio${contC2}`).checked = true;
+    }
+
+    //script mini carrossel 3
+    let setaEsquerda3 = document.getElementById("seta3-esquerda-c3");
+    let setaDireita3 = document.getElementById("seta3-direita-c3");
+    let contC3 = 1;
+
+    setaEsquerda3.addEventListener("click", movEsq3);
+    setaDireita3.addEventListener("click", movDir3);
+
+    function movEsq3(){
+        contC3--;
+
+        if(contC3 < 1){
+            contC3 = 1;
+        }
+        document.getElementById(`mini3-radio${contC3}`).checked = true;
+    }
+
+    function movDir3(){
+        contC3++;
+
+        if(contC3 > 10){
+            contC3 = 1;
+        }
+        document.getElementById(`mini3-radio${contC3}`).checked = true;
     }
 </script>
 </html>
