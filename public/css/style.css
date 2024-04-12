@@ -435,14 +435,75 @@ hr {
 }
 /* css do registro de usuário */
 .container {
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
+    margin-top: 5%;
 }
 form {
     width: 100%;
 }
+form fieldset {
+    border: 1px solid white;
+    border-radius: 10px;
+}
+form fieldset legend {
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0px 10px 0px 10px;
+}
+form input {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+    border-bottom: 1px solid white;
+    width: 90%;
+    height: 40px;
+    font-size: 17px;
+}
+form label {
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+::placeholder {
+    color: whitesmoke;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+}
 .colUser {
     float: left;
     width: 45%;
+    padding: 20px;
+}
+.btnConf {
+    background-color: rgb(36, 0, 56);
+    color: white;
     padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    font-size: 19px;
+    border: none;
+}
+.btnConfOk {
+    cursor: pointer;
+    background-color: rgb(81, 0, 128);
+    color: white;
+    cursor: pointer;
+}
+.colReUser {
+    width: 47.3%;
+    float: left;
+    padding: 20px;
+}
+.imgEventCol {
+    width: 50%;
+    float: left;
+}
+.imgEvent {
+    width: 300px;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
 }

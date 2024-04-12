@@ -4,45 +4,74 @@
     <div class="container">
         <form method="post" action="" onsubmit="confForm(event, this)">
             <fieldset>
-                <legend>Cadastre-se</legend>
-                <div class="colUser" style="border-right: 1px solid white; margin-bottom: 20px;">
-                    <label for="nameUser">Nome:</label><br>
-                    <input type="text" name="nameUser" id="nameUser" placeholder="Coloque o seu nome ...">
+                <legend>Registrar evento</legend>
+                <div class="colReUser">
+                    <h1>1. informações do local</h1>
+                    <h3>Adicione as principais informações sobre a localização.</h3>
                     <br>
                     <br>
-                    <label for="lastName">Ultimo nome:</label><br>
-                    <input type="text" name="lastName" id="lastName" placeholder="Coloque o seu ultimo nome ...">
+                    <label for="enderEvent">Informe o endereço ou o nome do local do evento:</label><br>
+                    <input type="text" name="enderEvent" id="enderEvent" placeholder="Endereço ou o nome do local ...">
                     <br>
                     <br>
-                    <label for="email">E-mail:</label><br>
-                    <input type="email" name="email" id="email" placeholder="Coloque o seu e-mail ...">
+                    <label for="cep">CEP:</label><br>
+                    <input type="text" name="cep" id="cep" pattern="[0-9]{5}-[0-9]{3}" maxlength="9" placeholder="00000-000">
                     <br>
                     <br>
-                    <label for="confEmail">Confirme o seu e-mail:</label><br>
-                    <input type="email" name="confEmail" id="confEmail" placeholder="Confirme o seu e-mail ...">
+                    <label for="avRua">Av./Rua:</label><br>
+                    <input type="text" name="avRua" id="avRua" placeholder="Coloque a avenida ou a rua ...">
                     <br>
                     <br>
-                    <label for="tel">Telefone:</label><br>
-                    <input type="tel" name="tel" id="tel" placeholder="Coloque o seu telefone ...">
+                    <label for="num">Número:</label><br>
+                    <input type="text" name="num" id="num" placeholder="Confirme o seu e-mail ...">
                     <br>
                     <br>
-                    <label for="password">Senha:</label><br>
-                    <input type="password" name="password" id="password" placeholder="Defina uma senha de 8 caracteres ...">
+                    <label for="complemento">Complemento:</label><br>
+                    <input type="text" name="complemento" id="complemento" placeholder="complemento (opicional) ...">
                     <br>
                     <br>
-                    <label for="confPassword">Confirme a sua senha:</label><br>
-                    <input type="password" name="confPassword" id="confPassword" placeholder="Confirme a sua senha ...">
+                    <label for="bairro">Bairro:</label><br>
+                    <input type="text" name="bairro" id="bairro" placeholder="Informe o bairro ...">
                     <br>
                     <br>
-                    <center>
-                        <button type="submit" class="btnConf" id="btnConf">Cadastrar-se</button>
-                    </center>
+                    <label for="city">Cidade:</label><br>
+                    <input type="text" name="city" id="city" placeholder="Informe a cidade ...">
+                    <br>
+                    <br>
+                    <label for="est">Estado:</label><br>
+                    <input type="text" name="est" id="est" placeholder="Informe o estado ...">
+                    <br>
+                    <br>
                 </div>
-                <div class="colUser">
-                    <h2>Texto</h2>
+                <div class="colReUser">
+                    <h1>2. informações básicas</h1>
+                    <h3>Adicione as principais informações do evento.</h3>
+                    <br>
+                    <br>
+                    <label for="eventName">Nome do evento</label><br>
+                    <input type="text" name="eventName" id="eventName" placeholder="Nome do evento ...">
+                    <br>
+                    <br>
+                    <div class="imgEventCol">
+                        <label>Imagem de divulgação</label>
+                        <label for="imgEvent">baixar imagem</label>
+                        <input type="file" name="imgEvent" id="imgEvent" style="display: none;">
+                    </div>
+                    <div class="imgEventCol">
+                        <p>teste</p>
+                    </div>
+                    <div class="clear"></div>
                 </div>
+                <div class="clear"></div>
+                <center>
+                    <button type="submit" class="btnConf" id="btnConf">Cadastrar-se</button>
+                </center>
+                <br>
+                <br>
             </fieldset>
         </form>
+        <br>
+        <br>
         <div class="clear"></div>
     </div>
 </body>
