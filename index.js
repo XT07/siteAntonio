@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const reUserControler = require("./registerUser/reUserControler");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));

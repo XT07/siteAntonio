@@ -414,15 +414,12 @@ h1 {
     float: left;
     padding: 20px 20px 20px 50px;
 }
-
 .col li {
     margin: 0px 0px 0px 50px;
 }
-
 .col h3 {
     font-size: 30px;
 }
-
 .colContent {
     margin: 0px 0px 0px 250px;
 }
@@ -431,9 +428,21 @@ h1 {
     font-size: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
 hr {
     width: 80%;
     margin: 0 auto;
     border: 1px solid white;
+}
+/* css do registro de usuário */
+.container {
+    width: 50%;
+    margin: 0 auto;
+}
+form {
+    width: 100%;
+}
+.colUser {
+    float: left;
+    width: 45%;
+    padding: 10px;
 }
