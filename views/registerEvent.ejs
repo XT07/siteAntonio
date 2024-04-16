@@ -52,19 +52,131 @@
                     <input type="text" name="eventName" id="eventName" placeholder="Nome do evento ...">
                     <br>
                     <br>
-                    <div class="imgEventCol">
-                        <label>Imagem de divulgação</label>
-                        <label for="imgEvent">baixar imagem</label>
-                        <input type="file" name="imgEvent" id="imgEvent" style="display: none;">
-                    </div>
-                    <div class="imgEventCol">
-                        <p>teste</p>
-                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <label for="imgEvent" style="border: 1px solid white; border-radius: 10px;cursor: pointer; padding: 100px;">Imagem de divulgação</label>
+                    <input type="file" name="imgEvent" id="imgEvent" accept=".JPEG, .JPG, .PNG" style="display: none;">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <p><b>Aceitamos "JPEG" e "PNG".</b></p>
+                    <br>
+                    <br>
+                    <h3>Classifique o seu evento</h3>
+                    <br>
+                    <br>
+                    <label for="aboutEvent">Assunto do evento:</label>
+                    <input type="text" class="aboutEvent" id="aboutEvent" name="aboutEvent" placeholder="assunto do evento ...">
+                    <br>
+                    <br>
+                    <br>
+                    <label for="categorySelector">Categoria</label><br><br>
+                    <select id="categorySelector" class="categorySelector">
+                        <option>Categoria</option>
+                    </select>
+                    <br>
+                    <br>
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
                 <center>
-                    <button type="submit" class="btnConf" id="btnConf">Cadastrar-se</button>
+                    <h1>3. Descrição do evento</h1>
+                    <br>
+                    <br>
+                    <h3>Conte todos os detalhes do evento e a sua programação</h3>
+                    <br>
+                    <br>
+                    <textarea name="descriptionEvent" id="descriptionEvent" style="width: 90%; height: 600px;"></textarea>
+                    <br>
+                    <br>
+                </center>
+                <br>
+                <br>
+                <br>
+                <br>
+                <center>
+                    <h1>4. Data e horário</h1>
+                    <br>
+                    <br>
+                    <h3>Informe quando o seu evento acontecerá</h3>
+                </center>
+                <br>
+                <br>
+                <div class="col4">
+                    <center>
+                        <label for="dtInit">Data de início</label><br>
+                        <input type="date" name="dtInit" id="dtInit" class="date">
+                    </center>
+                </div>
+                <div class="col4">
+                    <center>
+                        <label for="dtEnd">Data de término</label><br>
+                        <input type="date" name="dtEnd" id="dtEnd" class="date">
+                    </center>
+                </div>
+                <div class="col4">
+                    <center>
+                        <label for="timeInit">Horário de início</label><br>
+                        <input type="time" name="timeInit" id="timeInit" class="date">
+                    </center>
+                </div>
+                <div class="col4">
+                    <center>
+                        <label for="timeEnd">Horário de término</label><br>
+                        <input type="time" name="timeEnd" id="timeEnd" class="date">
+                    </center>
+                </div>
+                <div class="clear"></div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <center>
+                    <h1>5. Sobre o produtor</h1>
+                    <br>
+                    <br>
+                    <h3>Conte um pouco sobre você ou sua empresa.</h3>
+                </center>
+                <br>
+                <br>
+                <div style="padding: 0px 85px 0px 85px;">
+                    <label for="nameEventP">Nome:</label><br>
+                    <input type="text" name="nameEventP" id="nameEventP" style="width: 700px;">
+                </div>
+                <br>
+                <br>
+                <div style="padding: 0px 85px 0px 85px;">
+                    <label for="aboutEventP">Descrição:</label><br><br>
+                </div>
+                <center>
+                    <textarea id="aboutEventP" style="width: 90%; height: 600px;"></textarea>
+                </center>
+                <div class="clear"></div>
+                <br>
+                <br>
+                <div style="padding: 0px 85px 0px 85px;">
+                    <input type="checkbox" name="responsability" id="responsability" class="responsability" checked>
+                    <label for="responsability" style="font-size: 18px;">
+                        Este serviço é fornecido conforme os 
+                        <a href="#" style="text-decoration: underline;">
+                            termos e condições
+                        </a> 
+                        estabelecidos neste documento, os quais regem o seu uso. 
+                        Ao acessar ou utilizar este serviço, você concorda com esses termos e condições.</label>
+                </div>
+                <br>
+                <br>
+                <center>
+                    <button type="submit" class="btnConf" id="btnConf">Registrar evento</button>
                 </center>
                 <br>
                 <br>
@@ -76,7 +188,13 @@
     </div>
 </body>
 <%- include("partials/footer.ejs") %>
+<script src="tinymce/tinymce.min.js"></script>
 <script>
+    tinymce.init({
+        language: "pt_BR",
+        selector: "#descriptionEvent, #aboutEventP"
+    })
+
     let nameUser = document.getElementById("nameUser");
     let lastName = document.getElementById("lastName");
     let email = document.getElementById("email");
