@@ -1,5 +1,5 @@
 * {
-    color: white;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     letter-spacing: 2px;
@@ -12,7 +12,7 @@
 }
 
 body {
-    background-color: black;
+    background-color: white;
     margin-top: 80px;
 }
 
@@ -22,7 +22,7 @@ nav {
     top: 0;
     position: fixed;
     padding: 20px 20px 20px 20px;
-    background-color: black;
+    background-color: white;
     z-index: 999;
 }
 
@@ -62,6 +62,7 @@ h1 {
     border-radius: 10px;
     padding: 10px 10px 10px 10px;
     margin: 0px 10px 0px 10px;
+    color: white;
 }
 
 .btnMenu:hover {
@@ -101,15 +102,15 @@ h1 {
 }
 
 #radio1:checked~.nav-auto .auto-btn1 {
-    background-color: white;
+    background-color: rgb(81, 0, 128);
 }
 
 #radio2:checked~.nav-auto .auto-btn2 {
-    background-color: white;
+    background-color: rgb(81, 0, 128);
 }
 
 #radio3:checked~.nav-auto .auto-btn3 {
-    background-color: white;
+    background-color: rgb(81, 0, 128);
 }
 
 #radio1:checked~.mov1 {
@@ -136,7 +137,7 @@ h1 {
 
 .nav-manual .manual-btn,
 .nav-auto div {
-    border: 1px solid white;
+    border: 1px solid rgb(81, 0, 128);
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
@@ -144,7 +145,7 @@ h1 {
 }
 
 .nav-manual .manual-btn:hover {
-    background-color: white;
+    background-color: rgb(81, 0, 128);
 }
 
 .nav-manual .manual-btn:not(:last-child),
@@ -174,6 +175,13 @@ h1 {
     padding: 0 !important;
     overflow: hidden;
 }
+.slider-box4 {
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    padding: 0 !important;
+    overflow: hidden;
+}
 .slider-box-content {
     width: 1000%;
     height: 270px;
@@ -189,6 +197,11 @@ h1 {
     height: 270px;
     display: flex;
 }
+.slider-box-content4 {
+    width: 1000%;
+    height: 270px;
+    display: flex;
+}
 .slider-box-content input {
     display: none;
 }
@@ -196,6 +209,9 @@ h1 {
     display: none;
 }
 .slider-box-content3 input {
+    display: none;
+}
+.slider-box-content4 input {
     display: none;
 }
 .slider-box-content img {
@@ -216,6 +232,12 @@ h1 {
     object-fit: cover;
     margin: 0 5px;
 }
+.slider-box-content4 img {
+    flex: 0 0 calc((90% - 40px) / 5);
+    max-height: 250px;
+    object-fit: cover;
+    margin: 0 5px;
+}
 .slide-img-box {
     transition: 0.5s;
 }
@@ -223,6 +245,9 @@ h1 {
     transition: 0.5s;
 }
 .slide-img-box3 {
+    transition: 0.5s;
+}
+.slide-img-box4 {
     transition: 0.5s;
 }
 .seta {
@@ -234,7 +259,7 @@ h1 {
     justify-content: center;
     cursor: pointer;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: white;
 }
 .seta2 {
     position: absolute;
@@ -245,7 +270,7 @@ h1 {
     justify-content: center;
     cursor: pointer;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: white;
 }
 .seta3 {
     position: absolute;
@@ -256,7 +281,18 @@ h1 {
     justify-content: center;
     cursor: pointer;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: white;
+}
+.seta4 {
+    position: absolute;
+    bottom: -900px;
+    width: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    background-color: white;
 }
 .esquerda {
     left: 0;
@@ -267,6 +303,9 @@ h1 {
 .esquerda3 {
     left: 0;
 }
+.esquerda4 {
+    left: 0;
+}
 .direita {
     right: 0;
 }
@@ -274,6 +313,9 @@ h1 {
     right: 0;
 }
 .direita3 {
+    right: 0;
+}
+.direita4 {
     right: 0;
 }
 .seta::before {
@@ -297,23 +339,36 @@ h1 {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
+.seta4::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
 .seta.esquerda::before {
-    border-right: 10px solid #fff;
+    border-right: 10px solid black;
 }
 .seta2.esquerda2::before {
-    border-right: 10px solid #fff;
+    border-right: 10px solid black;
 }
 .seta3.esquerda3::before {
-    border-right: 10px solid #fff;
+    border-right: 10px solid black;
+}
+.seta4.esquerda4::before {
+    border-right: 10px solid black;
 }
 .seta.direita::before {
-    border-left: 10px solid #fff;
+    border-left: 10px solid black;
 }
 .seta2.direita2::before {
-    border-left: 10px solid #fff;
+    border-left: 10px solid black;
 }
 .seta3.direita3::before {
-    border-left: 10px solid #fff;
+    border-left: 10px solid black;
+}
+.seta4.direita4::before {
+    border-left: 10px solid black;
 }
 /* "script" do carrossel 1 */
 #mini-radio1:checked~.first {
@@ -408,6 +463,37 @@ h1 {
 #mini3-radio10:checked~.first {
     margin-left: -9%;
 }
+/* "script" do carrossel 4 */
+#mini4-radio1:checked~.first {
+    margin-left: 0%;
+}
+#mini4-radio2:checked~.first {
+    margin-left: -1%;
+}
+#mini4-radio3:checked~.first {
+    margin-left: -2%;
+}
+#mini4-radio4:checked~.first {
+    margin-left: -3%;
+}
+#mini4-radio5:checked~.first {
+    margin-left: -4%;
+}
+#mini4-radio6:checked~.first {
+    margin-left: -5%;
+}
+#mini4-radio7:checked~.first {
+    margin-left: -6%;
+}
+#mini4-radio8:checked~.first {
+    margin-left: -7%;
+}
+#mini4-radio9:checked~.first {
+    margin-left: -8%;
+}
+#mini4-radio10:checked~.first {
+    margin-left: -9%;
+}
 /* css do about */
 .col {
     width: 46%;
@@ -431,7 +517,7 @@ h1 {
 hr {
     width: 80%;
     margin: 0 auto;
-    border: 1px solid white;
+    border: 1px solid black;
 }
 /* css do registro de usuário */
 .container {
@@ -443,7 +529,7 @@ form {
     width: 100%;
 }
 form fieldset {
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 10px;
 }
 form fieldset legend {
@@ -457,7 +543,7 @@ form input {
     outline: none;
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 2px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
     width: 90%;
     height: 40px;
     font-size: 17px;
@@ -467,7 +553,7 @@ form label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 ::placeholder {
-    color: whitesmoke;
+    color: black;
     font-size: 17px;
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 2px;

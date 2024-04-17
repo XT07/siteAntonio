@@ -58,7 +58,7 @@
                     <br>
                     <br>
                     <br>
-                    <label for="imgEvent" style="border: 1px solid white; border-radius: 10px;cursor: pointer; padding: 100px;">Imagem de divulgação</label>
+                    <label for="imgEvent" style="border: 1px solid black; border-radius: 10px;cursor: pointer; padding: 100px;">Imagem de divulgação</label>
                     <input type="file" name="imgEvent" id="imgEvent" accept=".JPEG, .JPG, .PNG" style="display: none;">
                     <br>
                     <br>
@@ -69,6 +69,13 @@
                     <br>
                     <br>
                     <p><b>Aceitamos "JPEG" e "PNG".</b></p>
+                    <br>
+                    <div style="padding: 0px 20px 0px 0px;">
+                        <input type="checkbox" name="eventPago" id="eventPago" class="responsability">
+                        <label for="eventPago" style="font-size: 18px;">
+                            Divulgação paga
+                        </label>
+                    </div>
                     <br>
                     <br>
                     <h3>Classifique o seu evento</h3>
@@ -194,108 +201,6 @@
         language: "pt_BR",
         selector: "#descriptionEvent, #aboutEventP"
     })
-
-    let nameUser = document.getElementById("nameUser");
-    let lastName = document.getElementById("lastName");
-    let email = document.getElementById("email");
-    let confEmail = document.getElementById("confEmail");
-    let tel = document.getElementById("tel");
-    let password = document.getElementById("password");
-    let confPassword = document.getElementById("confPassword");
-    let btnConf = document.getElementById("btnConf");
-
-    let isNameValid = false;
-    let isLastNameValid = false;
-    let isEmailValid = false;
-    let isConfEmailValid = false;
-    let isTelValid = false;
-    let isPasswordValid = false;
-    let isConfPasswordValid = false;
-
-    nameUser.addEventListener("input", () => {
-        if(nameUser.value.length >= 2){
-            nameUser.style.borderBottom = "1px solid green";
-            isNameValid = true;
-        } else {
-            nameUser.style.borderBottom = "1px solid red";
-            isNameValid = false;
-        }
-        validateForm();
-    });
-
-    lastName.addEventListener("input", () => {
-        if(lastName.value.length >= 2){
-            lastName.style.borderBottom = "1px solid green";
-            isLastNameValid = true;
-        } else {
-            lastName.style.borderBottom = "1px solid red";
-            isLastNameValid = false;
-        }
-        validateForm();
-    });
-
-    email.addEventListener("input", () => {
-        if(email.value.includes("@")){
-            email.style.borderBottom = "1px solid green";
-            isEmailValid = true;
-        } else {
-            email.style.borderBottom = "1px solid red";
-            isEmailValid = false;
-        }
-        validateForm();
-    });
-
-    confEmail.addEventListener("input", () => {
-        if(confEmail.value === email.value){
-            confEmail.style.borderBottom = "1px solid green";
-            isConfEmailValid = true;
-        } else {
-            confEmail.style.borderBottom = "1px solid red";
-            isConfEmailValid = false;
-        }
-        validateForm();
-    });
-
-    tel.addEventListener("input", () => {
-        if(tel.value.length >= 9){
-            tel.style.borderBottom = "1px solid green";
-            isTelValid = true;
-        } else {
-            tel.style.borderBottom = "1px solid red";
-            isTelValid = false;
-        }
-        validateForm();
-    });
-
-    password.addEventListener("input", () => {
-        if(password.value.length >= 8){
-            password.style.borderBottom = "1px solid green";
-            isPasswordValid = true;
-        } else {
-            password.style.borderBottom = "1px solid red";
-            isPasswordValid = false;
-        }
-        validateForm();
-    });
-
-    confPassword.addEventListener("input", () => {
-        if(confPassword.value === password.value){
-            confPassword.style.borderBottom = "1px solid green";
-            isConfPasswordValid = true;
-        } else {
-            confPassword.style.borderBottom = "1px solid red";
-            isConfPasswordValid = false;
-        }
-        validateForm();
-    });
-
-    function validateForm() {
-        if(isNameValid && isLastNameValid && isEmailValid && isConfEmailValid && isTelValid && isPasswordValid && isConfPasswordValid){
-            btnConf.classList.add("btnConfOk");
-        } else {
-            btnConf.classList.remove("btnConfOk");
-        }
-    }
 
     function confForm(e, form){
         e.preventDefault();
