@@ -608,3 +608,17 @@ form label {
     width: 20px;
     height: 20px;
 }
+/* css do login */
+.containerLog {
+    width: 50%;
+    margin: 0 auto;
+}
+.containerLog fieldset {
+    padding: 30px;
+}
+.inputErr {
+    border-bottom: 1px solid red;
+}
+.inputOk {
+    border-bottom: 1px solid green;
+}

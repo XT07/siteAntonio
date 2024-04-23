@@ -1,0 +1,81 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/menu.ejs") %>
+<body>
+    <div class="containerLog">
+        <form method="post" action="" onsubmit="confForm(event, this)">
+            <fieldset>
+                <legend>Log-in</legend>
+                <h3>Login exclusivo para administradores (temporario)</h3>
+                <br>
+                <br>
+                <label for="log">Log</label><br>
+                <input type="text" name="log" id="log" placeholder="Log de admin" style="width: 99%;">
+                <br>
+                <br>
+                <label for="pass">Senha</label><br>
+                <input type="password" name="pass" id="pass" placeholder="Coloque a sua senha" style="width: 99%;">
+                <br>
+                <br>
+                <center>
+                    <input type="submit" class="btnConf" id="btnConf" value="Entrar">
+                </center>
+            </fieldset>
+        </form>
+    </div>
+</body>
+<script>
+    let log = document.getElementById("log");
+    let logOk = 0;
+    let pass = document.getElementById("pass");
+    let passOk = 0;
+    let btnConf = document.getElementById("btnConf");
+
+    log.addEventListener("input", () => {
+        if(log.value.length < 1){
+            log.classList.remove("inputOk");
+            log.classList.add("inputErr");
+            logOk = 0;
+            if(logOk === 1 && passOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            log.classList.remove("inputErr");
+            log.classList.add("inputOk");
+            logOk = 1;
+            if(logOk === 1 && passOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    pass.addEventListener("input", () => {
+        if(pass.value.length < 1){
+            pass.classList.remove("inputOk");
+            pass.classList.add("inputErr");
+            passOk = 0;
+            if(logOk === 1 && passOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            pass.classList.remove("inputErr");
+            pass.classList.add("inputOk");
+            passOk = 1;
+            if(logOk === 1 && passOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    function confForm(e, form){
+        e.preventDefault();
+    }
+</script>
+<%- include("partials/footer.ejs") %>
