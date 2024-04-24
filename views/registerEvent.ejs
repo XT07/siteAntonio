@@ -15,7 +15,8 @@
                     <br>
                     <br>
                     <label for="cep">CEP:</label><br>
-                    <input type="text" name="cep" id="cep" pattern="[0-9]{5}-[0-9]{3}" maxlength="9" placeholder="00000-000">
+                    <!-- pattern="[0-9]{5}-[0-9]{3}" -->
+                    <input type="text" name="cep" id="cep"  maxlength="9" placeholder="00000-000">
                     <br>
                     <br>
                     <label for="avRua">Av./Rua:</label><br>
@@ -165,7 +166,7 @@
                     <label for="aboutEventP">Descrição:</label><br><br>
                 </div>
                 <center>
-                    <textarea id="aboutEventP" style="width: 90%; height: 600px;"></textarea>
+                    <textarea id="aboutEventP" name="aboutEventP" style="width: 90%; height: 600px;"></textarea>
                 </center>
                 <div class="clear"></div>
                 <br>
@@ -199,7 +200,8 @@
 <script>
     tinymce.init({
         language: "pt_BR",
-        selector: "#descriptionEvent, #aboutEventP"
+        selector: "#descriptionEvent, #aboutEventP",
+        license_key: 'gpl'
     })
 
     let enderEvent = document.getElementById("enderEvent");
@@ -222,6 +224,7 @@
     let eventNameOk = 0;
     let imgEvent = document.getElementById("imgEvent");
     let eventPago = document.getElementById("eventPago");
+    let eventPagoOk = 0;
     let aboutEvent = document.getElementById("aboutEvent");
     let aboutEventOk = 0;
     let categorySelector = document.getElementById("categorySelector");
@@ -236,6 +239,7 @@
     let aboutEventP = document.getElementById("aboutEventP");
     let aboutEventPOk = 0;
     let responsability = document.getElementById("responsability");
+    let responsabilityOk = 0;
     let btnConf = document.getElementById("btnConf");
 
     enderEvent.addEventListener("input", () => {
@@ -484,7 +488,7 @@
         if(aboutEventP.value.length < 1){
             aboutEventP.classList.remove("inputOk");
             aboutEventP.classList.add("inputErr");
-            aboutEventP = 0;
+            aboutEventPOk = 0;
             if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
                 btnConf.classList.add("btnConfOk");
             }else {
@@ -527,6 +531,15 @@
     function confForm(e, form){
         e.preventDefault();
 
+        if(responsability.checked == true){
+            responsabilityOk = 1;
+
+            if(enderEvent != "" && cep != "" && avRua != "" && num != "" && complemento != "" && bairro != "" && city != "" && est != "" && eventName != "" && imgEvent != null && aboutEvent != "" && nameEventPOk != "" && aboutEventP != "" && descriptionEvent != "" && dtInit != "" && dtEnd != "" && timeInit != "" && timeEnd != "" && nameEventP != "" && aboutEventP != "" && responsability.checked == true){
+                form.submit();
+            }else {
+                console.log("Deu erro aqui");
+            }
+        }
     }
 </script>
 </html>

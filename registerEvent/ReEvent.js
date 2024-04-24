@@ -4,113 +4,97 @@ const connection = require("../db/connection");
 const event = connection.define("events", {
     Nome_evento: {
         type: sequelize.TEXT,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     Slug: {
         type: sequelize.STRING,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     endereco: {
         type: sequelize.TEXT,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
+    },
+    cep: {
+        type: sequelize.TEXT,
+        allowNull: false
     },
     Av_Rua: {
-        type: sequelize.STRING,
-        allowNull: false,
-        defaultValue: false
+        type: sequelize.TEXT,
+        allowNull: false
     },
     numero: {
-        type: sequelize.NUMBER,
-        allowNull: false,
-        defaultValue: false
+        type: sequelize.TEXT,
+        allowNull: false
     },
     complemento: {
         type: sequelize.TEXT,
-        allowNull: true,
-        defaultValue: false
+        allowNull: true
     },
     bairro: {
         type: sequelize.STRING,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     cidade: {
         type: sequelize.TEXT,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     estado: {
         type: sequelize.TEXT,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     imagem: {
         type: sequelize.BLOB,
-        allowNull: true,
-        defaultValue: false
+        allowNull: false
     },
     dvPago: {
-        type: sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+        type: sequelize.BOOLEAN
     },
     assunto: {
         type: sequelize.TEXT,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     detalhesEvento: {
         type: sequelize.TEXT,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     dataInicio: {
         type: sequelize.DATE,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     dataFim: {
         type: sequelize.DATE,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     horaInicio: {
         type: sequelize.TIME,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     horaFim: {
         type: sequelize.TIME,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     produtor: {
         type: sequelize.STRING,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     sobreProdutor: {
         type: sequelize.TEXT,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     termos: {
         type: sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+        allowNull: false
     },
     categoriaId: {
         type: sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: false
+        allowNull: true
     }
 })
 
-event.synv({ force: false }).then(() => {
+event.sync({ force: false }).then(() => {
     console.log("Tabela eventos sincronizada");
 }).catch(err => {
-    console.log("Erro na sincronização da tabela de ventos");
+    console.log(`Erro na sincronização da tabela de ventos | erro | ${err}`);
 })
+
+module.exports = event;

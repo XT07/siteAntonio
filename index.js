@@ -4,9 +4,12 @@ const reUserControler = require("./registerUser/reUserControler");
 const registerEventControler = require("./registerEvent/registerEventControler");
 const admControler = require("./adminControler/adminControler");
 const connection = require("./db/connection");
+const bodyParser = require("body-parser");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 connection
     .authenticate()
@@ -14,7 +17,7 @@ connection
         console.log("Banco de dados conectado");
     })
     .catch(err => {
-        console.log("Falha ao tentar afetuar a conexão com o banco de dados");
+        console.log(`Falha ao tentar afetuar a conexão com o banco de dados | erro | ${err}`);
     })
 
 app.use("/", reUserControler);
