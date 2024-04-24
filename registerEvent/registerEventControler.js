@@ -66,7 +66,7 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
 
 router.get("/aboutEvent/:id", (req, res) => {
     let id = parseInt(req.params.id);
-    ReEvent.findAll({ where: { id:id } }).then(event => {
+    ReEvent.findOne({ where: { id:id } }).then(event => {
         res.render("aboutEvent", {
             event:event
         });
