@@ -12,14 +12,18 @@
             <% if (contador == 0) { %>
                 <% if(event.imagem) { %>
                     <div class="slide-box mov1">
-                        <img src="data:image/jpeg;base64,<%= event.imagem %>">
+                        <a href="/aboutEvent/<%= event.id %>">
+                            <img src="data:image/jpeg;base64,<%= event.imagem %>">
+                        </a>
                     </div>
                 <% } %>
                 <% contador++; %>
             <% } else { %>
                 <% if(event.imagem) { %>
                     <div class="slide-box">
-                        <img src="data:image/jpeg;base64,<%= event.imagem %>">
+                        <a href="/aboutEvent/<%= event.id %>">
+                            <img src="data:image/jpeg;base64,<%= event.imagem %>">
+                        </a>
                     </div>
                 <% } %>
             <% } %>
