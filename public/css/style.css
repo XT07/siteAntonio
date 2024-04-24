@@ -622,3 +622,13 @@ form label {
 .inputOk {
     border-bottom: 1px solid green;
 }
+/* css do aboutEvent */
+.containerAboutEvent {
+    width: 50%;
+    margin: 0 auto;
+}
+.aboutEventTop {
+    width: 45%;
+    padding: 10px;
+    float: left;
+}
