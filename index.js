@@ -3,9 +3,19 @@ const app = express();
 const reUserControler = require("./registerUser/reUserControler");
 const registerEventControler = require("./registerEvent/registerEventControler");
 const admControler = require("./adminControler/adminControler");
+const connection = require("./db/connection");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+
+connection
+    .authenticate()
+    .then(() => {
+        console.log("Banco de dados conectado");
+    })
+    .catch(err => {
+        console.log("Falha ao tentar afetuar a conexão com o banco de dados");
+    })
 
 app.use("/", reUserControler);
 app.use("/", registerEventControler);
