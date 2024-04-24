@@ -5,6 +5,7 @@ const registerEventControler = require("./registerEvent/registerEventControler")
 const admControler = require("./adminControler/adminControler");
 const connection = require("./db/connection");
 const bodyParser = require("body-parser");
+const event = require("./registerEvent/ReEvent");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -25,7 +26,11 @@ app.use("/", registerEventControler);
 app.use("/", admControler);
 
 app.get("/", (req, res) => {
-    res.render("home");
+    event.findAll({ limit: 3, order: [ [ "id","DESC" ] ], where: { dvPago: true } }).then(events => {
+        res.render("home", {
+            events: events
+        });
+    })
 })
 
 app.get("/about", (req,res) => {

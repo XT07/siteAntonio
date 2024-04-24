@@ -2,12 +2,15 @@ const express = require("express");
 const ReEvent = require("./ReEvent");
 const router = express.Router();
 const slugify = require("slugify");
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 router.get("/registerEvent", (req, res) => {
     res.render("registerEvent");
 })
 
-router.post("/reEventSave", (req, res) => {
+router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
     let enderEvent = req.body.enderEvent;
     let cep = req.body.cep;
     let avRua = req.body.avRua;
@@ -17,7 +20,6 @@ router.post("/reEventSave", (req, res) => {
     let city = req.body.city;
     let est = req.body.est;
     let eventName = req.body.eventName;
-    let imgEvent = req.body.imgEvent;
     let eventPago = req.body.eventPago === 'on' ? true : false;
     let aboutEvent = req.body.aboutEvent;
     let categorySelector = req.body.categorySelector;
@@ -29,6 +31,8 @@ router.post("/reEventSave", (req, res) => {
     let nameEventP = req.body.nameEventP;
     let aboutEventP = req.body.aboutEventP;
     let responsability = req.body.responsability === 'on' ? true : false;
+
+    let imgEvent = req.file ? Buffer.from(req.file.buffer).toString('base64') : null;
 
     ReEvent.create({
         Nome_evento: eventName,

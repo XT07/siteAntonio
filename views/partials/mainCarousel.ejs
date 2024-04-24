@@ -7,16 +7,24 @@
         <input type="radio" name="btn-radio" id="radio3">
 
         <!-- imagens -->
-        <div class="slide-box mov1">
-            <img src="img/temp.jpg">
-        </div>
-        <div class="slide-box">
-            <img src="img/team.jpg">
-        </div>
-        <div class="slide-box">
-            <img src="img/temp.jpg">
-        </div>
-
+        <% let contador = 0; %>
+        <% events.forEach(event => { %>
+            <% if (contador == 0) { %>
+                <% if(event.imagem) { %>
+                    <div class="slide-box mov1">
+                        <img src="data:image/jpeg;base64,<%= event.imagem %>">
+                    </div>
+                <% } %>
+                <% contador++; %>
+            <% } else { %>
+                <% if(event.imagem) { %>
+                    <div class="slide-box">
+                        <img src="data:image/jpeg;base64,<%= event.imagem %>">
+                    </div>
+                <% } %>
+            <% } %>
+        <% }) %>
+        
         <!-- controler automático -->
         <div class="nav-auto">
             <div class="auto-btn1"></div>

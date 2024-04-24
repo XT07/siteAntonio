@@ -2,7 +2,7 @@
 <%- include("partials/menu.ejs") %>
 <body>
     <div class="container">
-        <form method="post" action="/reEventSave" onsubmit="confForm(event, this)">
+        <form method="post" action="/reEventSave" onsubmit="confForm(event, this)" enctype="multipart/form-data">
             <fieldset>
                 <legend>Registrar evento</legend>
                 <div class="colReUser">
