@@ -4,7 +4,7 @@ const router = express.Router();
 const slugify = require("slugify");
 const multer = require('multer');
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage, limits: { fileSize: 70 * 1024 }});
 
 router.get("/registerEvent", (req, res) => {
     res.render("registerEvent");
@@ -72,5 +72,74 @@ router.get("/aboutEvent/:id", (req, res) => {
         });
     })
 })
+
+router.post("/deletEvent", (req, res) => {
+    let id = req.body.id;
+    if(!isNaN(id)){
+        ReEvent.destroy({ where: {id:id} }).then(() => {
+            res.redirect("/");
+        }).catch(err => {
+            window.alert(`Não foi possivel deletar esse evento`);
+            console.log(`Não foi possivel deletar esse evento | erro | ${err}`)
+        })
+    }
+})
+
+router.get("/editEvent/:id", (req, res) => {
+    let id = req.params.id;
+
+    ReEvent.findOne({ where: { id:id } }).then(event => {
+        res.render("editEvent", {
+            event:event
+        })
+    })
+})
+
+router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
+    let {
+        id, enderEvent, cep, avRua, num, complemento, bairro, city, est,
+        eventName, eventPago, aboutEvent, categorySelector, descriptionEvent,
+        dtInit, dtEnd, timeInit, timeEnd, nameEventP, aboutEventP, responsability
+    } = req.body;
+
+    eventPago = eventPago === 'on' ? true : false;
+    responsability = responsability === 'on' ? true : false;
+    let imgEvent = req.file ? Buffer.from(req.file.buffer).toString('base64') : null;
+
+    const updateData = {
+        Nome_evento: eventName,
+        Slug: slugify(eventName),
+        endereco: enderEvent,
+        cep: cep,
+        Av_Rua: avRua,
+        numero: num,
+        complemento: complemento,
+        bairro: bairro,
+        cidade: city,
+        estado: est,
+        dvPago: eventPago,
+        assunto: aboutEvent,
+        detalhesEvento: descriptionEvent,
+        dataInicio: new Date(dtInit),
+        dataFim: new Date(dtEnd),
+        horaInicio: timeInit,
+        horaFim: timeEnd,
+        produtor: nameEventP,
+        sobreProdutor: aboutEventP,
+        termos: responsability,
+        categoriaId: categorySelector
+    };
+
+    if (imgEvent) {
+        updateData.imagem = imgEvent;
+    }
+
+    ReEvent.update(updateData, { where: { id: id } })
+        .then(() => res.redirect("/"))
+        .catch(err => {
+            console.error(`Erro ao editar o evento: ${err}`);
+            res.status(500).send("Erro ao editar o evento.");
+        });
+});
 
 module.exports = router;

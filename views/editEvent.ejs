@@ -1,0 +1,559 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/menu.ejs") %>
+<body>
+    <div class="container">
+        <form method="post" action="/editEventSave" onsubmit="confForm(event, this)" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Registrar evento</legend>
+                <div class="colReUser">
+                    <h1>1. informações do local</h1>
+                    <h3>Adicione as principais informações sobre a localização.</h3>
+                    <br>
+                    <br>
+                    <label for="enderEvent">Informe o endereço ou o nome do local do evento:</label><br>
+                    <input type="text" name="enderEvent" id="enderEvent" value="<%= event.endereco %>" placeholder="Endereço ou o nome do local ...">
+                    <br>
+                    <br>
+                    <label for="cep">CEP:</label><br>
+                    <!-- pattern="[0-9]{5}-[0-9]{3}" -->
+                    <input type="text" name="cep" id="cep" value="<%= event.cep %>" maxlength="9" placeholder="00000-000">
+                    <br>
+                    <br>
+                    <label for="avRua">Av./Rua:</label><br>
+                    <input type="text" name="avRua" id="avRua" value="<%= event.Av_Rua %>" placeholder="Coloque a avenida ou a rua ...">
+                    <br>
+                    <br>
+                    <label for="num">Número:</label><br>
+                    <input type="text" name="num" id="num" value="<%= event.numero %>" placeholder="Confirme o seu e-mail ...">
+                    <br>
+                    <br>
+                    <label for="complemento">Complemento:</label><br>
+                    <input type="text" name="complemento" id="complemento" value="<%= event.complemento %>" placeholder="complemento (opicional) ...">
+                    <br>
+                    <br>
+                    <label for="bairro">Bairro:</label><br>
+                    <input type="text" name="bairro" id="bairro" value="<%= event.bairro %>" placeholder="Informe o bairro ...">
+                    <br>
+                    <br>
+                    <label for="city">Cidade:</label><br>
+                    <input type="text" name="city" id="city" value="<%= event.cidade %>" placeholder="Informe a cidade ...">
+                    <br>
+                    <br>
+                    <label for="est">Estado:</label><br>
+                    <input type="text" name="est" id="est" value="<%= event.estado %>" placeholder="Informe o estado ...">
+                    <br>
+                    <br>
+                </div>
+                <div class="colReUser">
+                    <h1>2. informações básicas</h1>
+                    <h3>Adicione as principais informações do evento.</h3>
+                    <br>
+                    <br>
+                    <label for="eventName">Nome do evento</label><br>
+                    <input type="text" name="eventName" id="eventName" value="<%= event.Nome_evento %>" placeholder="Nome do evento ...">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <label for="imgEvent" style="border: 1px solid black; border-radius: 10px;cursor: pointer; padding: 100px;">Imagem de divulgação</label>
+                    <input type="file" name="imgEvent" id="imgEvent" accept=".JPEG, .JPG, .PNG" style="display: none;">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <p><b>Aceitamos "JPEG", "PNG" e "JPG" de até 70KB.</b></p>
+                    <br>
+                    <div style="padding: 0px 20px 0px 0px;">
+                        <% if(event.dvPago == 1){ %>
+                            <input type="checkbox" name="eventPago" id="eventPago" class="responsability" checked>
+                            <label for="eventPago" style="font-size: 18px;">
+                                Divulgação paga
+                            </label>
+                        <% } else { %>
+                            <input type="checkbox" name="eventPago" id="eventPago" class="responsability">
+                            <label for="eventPago" style="font-size: 18px;">
+                                Divulgação paga
+                            </label>
+                        <% } %>
+                    </div>
+                    <br>
+                    <br>
+                    <h3>Classifique o seu evento</h3>
+                    <br>
+                    <br>
+                    <label for="aboutEvent">Assunto do evento:</label>
+                    <input type="text" class="aboutEvent" id="aboutEvent" name="aboutEvent" value="<%= event.assunto %>" placeholder="assunto do evento ...">
+                    <br>
+                    <br>
+                    <br>
+                    <label for="categorySelector">Categoria</label><br><br>
+                    <select id="categorySelector" class="categorySelector">
+                        <option>Categoria</option>
+                    </select>
+                    <br>
+                    <br>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <center>
+                    <h1>3. Descrição do evento</h1>
+                    <br>
+                    <br>
+                    <h3>Conte todos os detalhes do evento e a sua programação</h3>
+                    <br>
+                    <br>
+                    <textarea name="descriptionEvent" id="descriptionEvent" style="width: 90%; height: 600px;">
+                        <%- event.detalhesEvento %>
+                    </textarea>
+                    <br>
+                    <br>
+                </center>
+                <br>
+                <br>
+                <br>
+                <br>
+                <center>
+                    <h1>4. Data e horário</h1>
+                    <br>
+                    <br>
+                    <h3>Informe quando o seu evento acontecerá</h3>
+                </center>
+                <br>
+                <br>
+                <div class="col4">
+                    <center>
+                        <label for="dtInit">Data de início</label><br>
+                        <input type="date" name="dtInit" value="<%= new Date(event.dataInicio).toISOString().split('T')[0] %>"" id="dtInit" class="date">
+                    </center>
+                </div>
+                <div class="col4">
+                    <center>
+                        <label for="dtEnd">Data de término</label><br>
+                        <input type="date" name="dtEnd" value="<%= new Date(event.dataFim).toISOString().split('T')[0] %>" id="dtEnd" class="date">
+                    </center>
+                </div>
+                <div class="col4">
+                    <center>
+                        <label for="timeInit">Horário de início</label><br>
+                        <input type="time" name="timeInit" value="<%= event.horaInicio %>" id="timeInit" class="date">
+                    </center>
+                </div>
+                <div class="col4">
+                    <center>
+                        <label for="timeEnd">Horário de término</label><br>
+                        <input type="time" name="timeEnd" value="<%= event.horaFim %>" id="timeEnd" class="date">
+                    </center>
+                </div>
+                <div class="clear"></div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <center>
+                    <h1>5. Sobre o produtor</h1>
+                    <br>
+                    <br>
+                    <h3>Conte um pouco sobre você ou sua empresa.</h3>
+                </center>
+                <br>
+                <br>
+                <div style="padding: 0px 85px 0px 85px;">
+                    <label for="nameEventP">Nome:</label><br>
+                    <input type="text" name="nameEventP" value="<%= event.produtor %>" id="nameEventP" style="width: 700px;">
+                </div>
+                <br>
+                <br>
+                <div style="padding: 0px 85px 0px 85px;">
+                    <label for="aboutEventP">Descrição:</label><br><br>
+                </div>
+                <center>
+                    <textarea id="aboutEventP" name="aboutEventP" style="width: 90%; height: 600px;">
+                        <%= event.sobreProdutor %>
+                    </textarea>
+                </center>
+                <div class="clear"></div>
+                <br>
+                <br>
+                <div style="padding: 0px 85px 0px 85px;">
+                    <input type="checkbox" name="responsability" id="responsability" class="responsability" checked>
+                    <label for="responsability" style="font-size: 18px;">
+                        Este serviço é fornecido conforme os 
+                        <a href="#" style="text-decoration: underline;">
+                            termos e condições
+                        </a> 
+                        estabelecidos neste documento, os quais regem o seu uso. 
+                        Ao acessar ou utilizar este serviço, você concorda com esses termos e condições.</label>
+                </div>
+                <br>
+                <br>
+                <center>
+                    <input type="hidden" value="<%= event.id %>" name="id">
+                    <button type="submit" class="btnConf" id="btnConf">Salvar alterações</button>
+                </center>
+                <br>
+                <br>
+            </fieldset>
+        </form>
+        <br>
+        <br>
+        <div class="clear"></div>
+    </div>
+</body>
+<%- include("partials/footer.ejs") %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language: "pt_BR",
+        selector: "#descriptionEvent, #aboutEventP",
+        license_key: 'gpl'
+    })
+
+    let enderEvent = document.getElementById("enderEvent");
+    let enderEventOk = 0;
+    let cep = document.getElementById("cep");
+    let cepOk = 0;
+    let avRua = document.getElementById("avRua");
+    let avRuaOk = 0;
+    let num = document.getElementById("num");
+    let numOk = 0;
+    let complemento = document.getElementById("complemento");
+    let complementoOk = 0;
+    let bairro = document.getElementById("bairro");
+    let bairroOk = 0;
+    let city = document.getElementById("city");
+    let cityOk = 0;
+    let est = document.getElementById("est");
+    let estOk = 0;
+    let eventName = document.getElementById("eventName");
+    let eventNameOk = 0;
+    let imgEvent = document.getElementById("imgEvent");
+    let eventPago = document.getElementById("eventPago");
+    let eventPagoOk = 0;
+    let aboutEvent = document.getElementById("aboutEvent");
+    let aboutEventOk = 0;
+    let categorySelector = document.getElementById("categorySelector");
+    let descriptionEvent = document.getElementById("descriptionEvent");
+    let descriptionEventOk = 0;
+    let dtInit = document.getElementById("dtInit");
+    let dtEnd = document.getElementById("dtEnd");
+    let timeInit = document.getElementById("timeInit");
+    let timeEnd = document.getElementById("timeEnd");
+    let nameEventP = document.getElementById("nameEventP");
+    let nameEventPOk = 0;
+    let aboutEventP = document.getElementById("aboutEventP");
+    let aboutEventPOk = 0;
+    let responsability = document.getElementById("responsability");
+    let responsabilityOk = 0;
+    let btnConf = document.getElementById("btnConf");
+
+    enderEvent.addEventListener("input", () => {
+        if(enderEvent.value.length < 1){
+            enderEvent.classList.remove("inputOk");
+            enderEvent.classList.add("inputErr");
+            enderEventOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            enderEvent.classList.remove("inputErr");
+            enderEvent.classList.add("inputOk");
+            enderEventOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    cep.addEventListener("input", () => {
+        if(cep.value.length < 1){
+            cep.classList.remove("inputOk");
+            cep.classList.add("inputErr");
+            cepOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            cep.classList.remove("inputErr");
+            cep.classList.add("inputOk");
+            cepOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    avRua.addEventListener("input", () => {
+        if(avRua.value.length < 1){
+            avRua.classList.remove("inputOk");
+            avRua.classList.add("inputErr");
+            avRuaOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            avRua.classList.remove("inputErr");
+            avRua.classList.add("inputOk");
+            avRuaOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+    
+    num.addEventListener("input", () => {
+        if(num.value.length < 1){
+            num.classList.remove("inputOk");
+            num.classList.add("inputErr");
+            numOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            num.classList.remove("inputErr");
+            num.classList.add("inputOk");
+            numOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+    
+    complemento.addEventListener("input", () => {
+        if(complemento.value.length < 1){
+            complemento.classList.remove("inputOk");
+            complemento.classList.add("inputErr");
+            complementoOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            complemento.classList.remove("inputErr");
+            complemento.classList.add("inputOk");
+            complementoOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    bairro.addEventListener("input", () => {
+        if(bairro.value.length < 1){
+            bairro.classList.remove("inputOk");
+            bairro.classList.add("inputErr");
+            bairroOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            bairro.classList.remove("inputErr");
+            bairro.classList.add("inputOk");
+            bairroOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    city.addEventListener("input", () => {
+        if(city.value.length < 1){
+            city.classList.remove("inputOk");
+            city.classList.add("inputErr");
+            cityOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            city.classList.remove("inputErr");
+            city.classList.add("inputOk");
+            cityOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    est.addEventListener("input", () => {
+        if(est.value.length < 1){
+            est.classList.remove("inputOk");
+            est.classList.add("inputErr");
+            estOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            est.classList.remove("inputErr");
+            est.classList.add("inputOk");
+            estOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    aboutEvent.addEventListener("input", () => {
+        if(aboutEvent.value.length < 1){
+            aboutEvent.classList.remove("inputOk");
+            aboutEvent.classList.add("inputErr");
+            aboutEventOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            aboutEvent.classList.remove("inputErr");
+            aboutEvent.classList.add("inputOk");
+            aboutEventOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    descriptionEvent.addEventListener("input", () => {
+        if(descriptionEvent.value.length < 1){
+            descriptionEvent.classList.remove("inputOk");
+            descriptionEvent.classList.add("inputErr");
+            descriptionEventOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            descriptionEvent.classList.remove("inputErr");
+            descriptionEvent.classList.add("inputOk");
+            descriptionEventOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    nameEventP.addEventListener("input", () => {
+        if(nameEventP.value.length < 1){
+            nameEventP.classList.remove("inputOk");
+            nameEventP.classList.add("inputErr");
+            nameEventPOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            nameEventP.classList.remove("inputErr");
+            nameEventP.classList.add("inputOk");
+            nameEventPOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    aboutEventP.addEventListener("input", () => {
+        if(aboutEventP.value.length < 1){
+            aboutEventP.classList.remove("inputOk");
+            aboutEventP.classList.add("inputErr");
+            aboutEventPOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            aboutEventP.classList.remove("inputErr");
+            aboutEventP.classList.add("inputOk");
+            aboutEventPOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    eventName.addEventListener("input", () => {
+        if(eventName.value.length < 1){
+            eventName.classList.remove("inputOk");
+            eventName.classList.add("inputErr");
+            eventNameOk = 0;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }else {
+            eventName.classList.remove("inputErr");
+            eventName.classList.add("inputOk");
+            eventNameOk = 1;
+            if(enderEventOk === 1 && cepOk === 1 && avRuaOk === 1 && numOk === 1 && complementoOk === 1 && bairroOk === 1 && cityOk === 1 && estOk === 1 && aboutEventOk === 1 && descriptionEventOk === 1 && nameEventPOk === 1 && aboutEventP === 1 && eventNameOk === 1){
+                btnConf.classList.add("btnConfOk");
+            }else {
+                btnConf.classList.remove("btnConfOk");
+            }
+        }
+    })
+
+    function confForm(e, form){
+        e.preventDefault();
+
+        let conf  = window.confirm("Tem certeza que quer salvar as alterações ?");
+
+        if(conf){
+            if(responsability.checked == true){
+                responsabilityOk = 1;
+
+                form.submit();
+            }else {
+                    console.log("Deu erro aqui");
+            }
+        }
+    }
+</script>
+</html>
