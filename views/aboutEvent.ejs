@@ -4,14 +4,68 @@
     <div class="containerAboutEvent">
         <div class="aboutEventTop">
             <center>
-                <img style="max-width: 400px; max-height: 400px;" src="data:image/jpeg;base64,<%= event.imagem %>">
+                <img style="max-width: 400px; max-height: 300px;" src="data:image/jpeg;base64,<%= event.imagem %>">
             </center>
         </div>
         <div class="aboutEventTop">
             <h2>Nome do evento</h2>
             <h3><%= event.Nome_evento %></h3>
+            <br><br>
+            <h2>Categoria</h2>
+            <h3></h3>
+            <br><br>
+            <h2>Assunto</h2>
+            <h3><%= event.assunto %></h3>
+            <br><br>
+            <h2>Descrição</h2>
+            <h3><%- event.detalhesEvento %></h3>
         </div>
         <div class="clear"></div>
+        <br><br>
+        <div>
+            <%
+            const utcDateInicio = new Date(event.dataInicio.getTime() + (event.dataInicio.getTimezoneOffset() * 60000));
+            const utcDateFim = new Date(event.dataFim.getTime() + (event.dataFim.getTimezoneOffset() * 60000));
+            const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+            const dataInicioFormat = utcDateInicio.toLocaleDateString('pt-BR', options);
+            const dataFimFormat = utcDateFim.toLocaleDateString('pt-BR', options);
+            %>
+            <h2>Data de inicio</h2>
+            <h3><%= dataInicioFormat %></h3>
+            <br><br>
+            <h2>Data do fim</h2>
+            <h3><%= dataFimFormat %></h3>
+            <br><br>
+            <h2>Hora de inicio</h2>
+            <h3><%= event.horaInicio %></h3>
+            <br><br>
+            <h2>Data do fim</h2>
+            <h3><%= event.horaFim %></h3>
+            <br><br>
+            <h2>Estado</h2>
+            <h3><%= event.estado %></h3>
+            <br><br>
+            <h2>Cidade</h2>
+            <h3><%= event.cidade %></h3>
+            <br><br>
+            <h2>Cep</h2>
+            <h3><%= event.cep %></h3>
+            <br><br>
+            <h2>Av./Rua</h2>
+            <h3><%- event.Av_Rua %></h3>
+            <br><br>
+            <h2>Bairro</h2>
+            <h3><%- event.bairro %></h3>
+            <br><br>
+            <h2>Endereço</h2>
+            <h3><%- event.endereco %></h3>
+            <br><br>
+            <h2>Número</h2>
+            <h3><%- event.numero %></h3>
+            <br><br>
+            <h2>Complemento</h2>
+            <h3><%- event.complemento %></h3>
+        </div>
     </div>
 </body>
 <%- include("partials/footer.ejs") %>
