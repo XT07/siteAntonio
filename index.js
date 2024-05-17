@@ -6,6 +6,7 @@ const admControler = require("./adminControler/adminControler");
 const connection = require("./db/connection");
 const bodyParser = require("body-parser");
 const event = require("./registerEvent/ReEvent");
+const user = require("./adminControler/Reuser");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
