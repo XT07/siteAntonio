@@ -18,17 +18,13 @@ const event = connection.define("events", {
         type: sequelize.TEXT,
         allowNull: false
     },
-    Av_Rua: {
+    LocalDoEvento: {
         type: sequelize.TEXT,
         allowNull: false
     },
     numero: {
         type: sequelize.TEXT,
         allowNull: false
-    },
-    complemento: {
-        type: sequelize.TEXT,
-        allowNull: true
     },
     bairro: {
         type: sequelize.STRING,
@@ -48,10 +44,6 @@ const event = connection.define("events", {
     },
     dvPago: {
         type: sequelize.BOOLEAN
-    },
-    assunto: {
-        type: sequelize.TEXT,
-        allowNull: false
     },
     detalhesEvento: {
         type: sequelize.TEXT,

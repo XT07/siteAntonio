@@ -7,11 +7,15 @@
                 <legend>Registrar evento</legend>
                 <div class="colReUser">
                     <h1>1. informações do local</h1>
-                    <h3>Adicione as principais informações sobre a localização.</h3>
+                    <h3>Informe o endereço.</h3>
                     <br>
                     <br>
                     <label for="enderEvent">Informe o endereço ou o nome do local do evento:</label><br>
                     <input type="text" name="enderEvent" id="enderEvent" placeholder="Endereço ou o nome do local ...">
+                    <br>
+                    <br>
+                    <label for="num">Número:</label><br>
+                    <input type="text" name="num" id="num" placeholder="Confirme o seu e-mail ...">
                     <br>
                     <br>
                     <label for="cep">CEP:</label><br>
@@ -19,16 +23,8 @@
                     <input type="text" name="cep" id="cep"  maxlength="9" placeholder="00000-000">
                     <br>
                     <br>
-                    <label for="avRua">Av./Rua:</label><br>
+                    <label for="avRua">Local do evento:</label><br>
                     <input type="text" name="avRua" id="avRua" placeholder="Coloque a avenida ou a rua ...">
-                    <br>
-                    <br>
-                    <label for="num">Número:</label><br>
-                    <input type="text" name="num" id="num" placeholder="Confirme o seu e-mail ...">
-                    <br>
-                    <br>
-                    <label for="complemento">Complemento:</label><br>
-                    <input type="text" name="complemento" id="complemento" placeholder="complemento (opicional) ...">
                     <br>
                     <br>
                     <label for="bairro">Bairro:</label><br>
@@ -69,7 +65,7 @@
                     <br>
                     <br>
                     <br>
-                    <p><b>Aceitamos "JPEG" e "PNG".</b></p>
+                    <p><b>Aceitamos "JPEG", "PNG" e "JPG".</b></p>
                     <br>
                     <div style="padding: 0px 20px 0px 0px;">
                         <input type="checkbox" name="eventPago" id="eventPago" class="responsability">
@@ -77,14 +73,6 @@
                             Divulgação paga
                         </label>
                     </div>
-                    <br>
-                    <br>
-                    <h3>Classifique o seu evento</h3>
-                    <br>
-                    <br>
-                    <label for="aboutEvent">Assunto do evento:</label>
-                    <input type="text" class="aboutEvent" id="aboutEvent" name="aboutEvent" placeholder="assunto do evento ...">
-                    <br>
                     <br>
                     <br>
                     <label for="categorySelector">Categoria</label><br><br>
@@ -171,6 +159,20 @@
                 <div class="clear"></div>
                 <br>
                 <br>
+                <center>
+                    <h1>6. Formas de contato</h1>
+                    <h3>Nós diga como as pessoas entrarão em contato com você</h3>
+                </center>
+                <div style="padding: 0px 85px 0px 85px;">
+                    <label for="link">Link:</label><br>
+                    <input style="width: 700px;" type="text" id="link" name="link">
+                    <br>
+                    <br>
+                    <label for="numZap">WhatsApp:</label><br>
+                    <input type="text" id="numZap" name="numZap" style="width: 700px;">
+                    <br>
+                    <br>
+                </div>
                 <div style="padding: 0px 85px 0px 85px;">
                     <input type="checkbox" name="responsability" id="responsability" class="responsability" checked>
                     <label for="responsability" style="font-size: 18px;">

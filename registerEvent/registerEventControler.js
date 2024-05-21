@@ -143,4 +143,12 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
         });
 });
 
+router.get("/eventsList", (req, res) => {
+    events.findAll().then(events => {
+        res.render("eventsList", {
+            events: events
+        })
+    })
+})
+
 module.exports = router;
