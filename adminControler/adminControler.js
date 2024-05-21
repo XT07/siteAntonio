@@ -11,8 +11,12 @@ router.get("/admPainel", (req, res) => {
     res.render("admPainel");
 })
 
-router.get("/eventList", (req, res) => {
-    
+router.get("/eventsList", (req, res) => {
+    events.findAll().then(events => {
+        res.render("eventsList", {
+            events: events
+        })
+    })
 })
 
 module.exports = router;

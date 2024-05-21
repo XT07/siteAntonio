@@ -66,21 +66,6 @@
             <h2>Complemento</h2>
             <h3><%- event.complemento %></h3>
         </div>
-        <br>
-        <br>
-        <center>
-            <form method="post" action="/deletEvent" onsubmit="confirmDelet(event, this)">
-                <input type="hidden" name="id" value="<%= event.id %>">
-                <input type="submit" value="Deletar" class="delet">
-            </form>
-            <br>
-            <br>
-            <form method="get" action="/editEvent/<%= event.id %>" onsubmit="confirmEdit(event, this)">
-                <input type="submit" value="Editar" class="edit">
-            </form>
-            <br>
-            <br>
-        </center>
     </div>
 </body>
 <%- include("partials/footer.ejs") %>

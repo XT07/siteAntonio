@@ -1,0 +1,84 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/menu.ejs") %>
+<body>
+    <h1 style="text-align: center;"> Listagen dos eventos registrados</h1>
+    <br><br>
+    <div class="list">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td><b>Nome</b></td>
+                    <td><b>Dia de inicio</b></td>
+                    <td><b>Dia de término</b></td>
+                    <td><b>Hora de início</b></td>
+                    <td><b>Hora de término</b></td>
+                    <td><b>Data de criação</b></td>
+                    <td><b>Data de última atualização</b></td>
+                    <td><b>Editar</b></td>
+                    <td><b>Excluir</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                <% events.forEach(event => { %>
+                    <%
+                        const utcDateInicio = new Date(event.dataInicio.getTime() + (event.dataInicio.getTimezoneOffset() * 60000));
+                        const utcDateFim = new Date(event.dataFim.getTime() + (event.dataFim.getTimezoneOffset() * 60000));
+                        const options1 = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+                        const dataInicioFormat = utcDateInicio.toLocaleDateString('pt-BR', options1);
+                        const dataFimFormat = utcDateFim.toLocaleDateString('pt-BR', options1);
+
+                        const utcDateCreation = new Date(event.createdAt.getTime() + (event.createdAt.getTimezoneOffset() * 60000));
+                        const options2 = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+                        const dataCriacaoFormat = utcDateCreation.toLocaleDateString('pt-BR', options2);
+
+                        const utcDateUpdated = new Date(event.updatedAt.getTime() + (event.updatedAt.getTimezoneOffset() * 60000));
+                        const options3 = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+                        const dataAtualizacaoFormat = utcDateUpdated.toLocaleDateString('pt-BR', options3);
+                    %>
+                    <tr>
+                        <th><%- event.Nome_evento %></th>
+                        <th><%- dataInicioFormat %></th>
+                        <th><%- dataFimFormat %></th>
+                        <th><%- event.horaInicio %></th>
+                        <th><%- event.horaFim %></th>
+                        <th><%- dataCriacaoFormat %></th>
+                        <th><%- dataAtualizacaoFormat %></th>
+                        <th>
+                            <form method="get" action="/editEvent/<%= event.id %>" onsubmit="confirmEdit(event, this)">
+                                <input type="submit" value="Editar" class="edit">
+                            </form>
+                        </th>
+                        <th>
+                            <form method="post" action="/deletEvent" onsubmit="confirmDelet(event, this)">
+                                <input type="hidden" name="id" value="<%= event.id %>">
+                                <input type="submit" value="Deletar" class="delet">
+                            </form>
+                        </th>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+<%- include("partials/footer.ejs") %>
+<script>
+    function confirmDelet(e, form){
+        e.preventDefault();
+
+        let conf = window.confirm(`Tem certeza que quer deletar esse evento ?`);
+
+        if(conf === true){
+            form.submit();
+        }
+    }
+    function confirmEdit(e, form){
+        e.preventDefault();
+
+        let conf = window.confirm(`Tem certeza que quer editar esse evento ?`);
+
+        if(conf === true){
+            form.submit();
+        }
+    }
+</script>
+</html>

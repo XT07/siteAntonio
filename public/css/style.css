@@ -661,3 +661,12 @@ form label {
     margin-top: 10%;
     margin-left: 5%;
 }
+/* css da listagen de eventos */
+.list {
+    width: 100%;
+}
+.list table {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+}

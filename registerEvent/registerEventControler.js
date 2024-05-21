@@ -5,6 +5,7 @@ const slugify = require("slugify");
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage, limits: { fileSize: 70 * 1024 }});
+const events = require("./ReEvent");
 
 router.get("/registerEvent", (req, res) => {
     res.render("registerEvent");
