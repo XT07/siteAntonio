@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/menu.ejs") %>
+<br>
+<body>
+    <h1 style="text-align: center;">Criar nova categoria</h1>
+    <br>
+    <div class="boxCategory">
+        <form method="post" action="/categorySave" onsubmit="verifyForm(event, this)">
+            <fieldset style="padding: 30px;">
+                <label for="nomeCategory">Nome:</label><br>
+                <input type="text" id="nomeCategory" name="nomeCategory" style="width: 700px;">
+                <br>
+                <br>
+                <center>
+                    <input type="submit" class="btnMenu" value="Criar">
+                </center>
+            </fieldset>
+        </form>
+    </div>
+</body>
+<%- include("partials/footer.ejs") %>
+<script>
+    function verifyForm(e, form){
+        e.preventDefault();
+
+        let nome = document.getElementById("nomeCategory").value;
+
+        if(nome != ""){
+            form.submit();
+        } else{
+          window.alert("Coloque o nome da categoria");  
+        }
+    }
+</script>
+</html>

@@ -670,3 +670,12 @@ form label {
     width: 90%;
     text-align: center;
 }
+/* css da criação da categorias */
+.boxCategory {
+    width: 80%;
+    margin: 0 auto;
+}
+.boxCategory form {
+    width: 50%;
+    margin: 0 auto;
+}

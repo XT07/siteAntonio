@@ -14,9 +14,8 @@ router.get("/registerEvent", (req, res) => {
 router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
     let enderEvent = req.body.enderEvent;
     let cep = req.body.cep;
-    let avRua = req.body.avRua;
+    let localEvento = req.body.localEvento;
     let num = req.body.num;
-    let complemento = req.body.complemento;
     let bairro = req.body.bairro;
     let city = req.body.city;
     let est = req.body.est;
@@ -40,9 +39,8 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
         Slug: slugify(eventName),
         endereco: enderEvent,
         cep: cep,
-        Av_Rua: avRua,
+        LocalDoEvento: localEvento,
         numero: num,
-        complemento: complemento,
         bairro: bairro,
         cidade: city,
         estado: est,
@@ -112,12 +110,12 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
         Slug: slugify(eventName),
         endereco: enderEvent,
         cep: cep,
-        Av_Rua: avRua,
+        LocalDoEvento: localEvento,
         numero: num,
-        complemento: complemento,
         bairro: bairro,
         cidade: city,
         estado: est,
+        imagem: imgEvent,
         dvPago: eventPago,
         assunto: aboutEvent,
         detalhesEvento: descriptionEvent,
@@ -144,7 +142,7 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
 });
 
 router.get("/eventsList", (req, res) => {
-    events.findAll().then(events => {
+    events.findAll({ order: [ [ "ID","DESC" ] ] }).then(events => {
         res.render("eventsList", {
             events: events
         })

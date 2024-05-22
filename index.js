@@ -7,6 +7,8 @@ const connection = require("./db/connection");
 const bodyParser = require("body-parser");
 const event = require("./registerEvent/ReEvent");
 const user = require("./adminControler/Reuser");
+const categoryControler = require("./adminControler/categoryControler/categoryControler");
+const cidadeControler = require("./adminControler/cidadeControler/cidadeControler");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -25,6 +27,8 @@ connection
 app.use("/", reUserControler);
 app.use("/", registerEventControler);
 app.use("/", admControler);
+app.use("/", categoryControler);
+app.use("/", cidadeControler);
 
 app.get("/", (req, res) => {
     event.findAll({ limit: 3, order: [ [ "id","DESC" ] ], where: { dvPago: true } }).then(events => {

@@ -7,11 +7,15 @@
                 <legend>Registrar evento</legend>
                 <div class="colReUser">
                     <h1>1. informações do local</h1>
-                    <h3>Adicione as principais informações sobre a localização.</h3>
+                    <h3>Informe o endereço</h3>
                     <br>
                     <br>
                     <label for="enderEvent">Informe o endereço ou o nome do local do evento:</label><br>
                     <input type="text" name="enderEvent" id="enderEvent" value="<%= event.endereco %>" placeholder="Endereço ou o nome do local ...">
+                    <br>
+                    <br>
+                    <label for="num">Número:</label><br>
+                    <input type="text" name="num" id="num" value="<%= event.numero %>" placeholder="Confirme o seu e-mail ...">
                     <br>
                     <br>
                     <label for="cep">CEP:</label><br>
@@ -19,16 +23,8 @@
                     <input type="text" name="cep" id="cep" value="<%= event.cep %>" maxlength="9" placeholder="00000-000">
                     <br>
                     <br>
-                    <label for="avRua">Av./Rua:</label><br>
-                    <input type="text" name="avRua" id="avRua" value="<%= event.Av_Rua %>" placeholder="Coloque a avenida ou a rua ...">
-                    <br>
-                    <br>
-                    <label for="num">Número:</label><br>
-                    <input type="text" name="num" id="num" value="<%= event.numero %>" placeholder="Confirme o seu e-mail ...">
-                    <br>
-                    <br>
-                    <label for="complemento">Complemento:</label><br>
-                    <input type="text" name="complemento" id="complemento" value="<%= event.complemento %>" placeholder="complemento (opicional) ...">
+                    <label for="LocalDoEvento">Local do evento:</label><br>
+                    <input type="text" name="LocalDoEvento" id="LocalDoEvento" value="<%= event.LocalDoEventofff %>" placeholder="Coloque a avenida ou a rua ...">
                     <br>
                     <br>
                     <label for="bairro">Bairro:</label><br>
