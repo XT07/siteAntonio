@@ -1,6 +1,5 @@
 const sequelize = require("sequelize");
 const connection = require("../../db/connection");
-const events = require("../../registerEvent/ReEvent");
 
 const category = connection.define("categorias", {
     nome: {
@@ -14,8 +13,5 @@ category.sync({ force: true }).then(() => {
 }).catch(err => {
     console.log(`Erro ao sincronizar a tabela das categorias | ${err} |`);
 })
-
-category.hasMany(events);
-events.belongsTo(category);
 
 module.exports = category;

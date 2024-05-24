@@ -1,5 +1,6 @@
 const sequelize = require("sequelize");
 const connection = require("../db/connection");
+const category = require("../adminControler/categoryControler/Category");
 
 const event = connection.define("events", {
     Nome_evento: {
@@ -88,5 +89,8 @@ event.sync({ force: true }).then(() => {
 }).catch(err => {
     console.log(`Erro na sincronização da tabela de eventos | erro | ${err}`);
 })
+
+category.hasMany(event);
+event.belongsTo(category);
 
 module.exports = event;

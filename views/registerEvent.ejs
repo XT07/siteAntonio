@@ -75,10 +75,14 @@
                     </div>
                     <br>
                     <br>
+
                     <label for="categorySelector">Categoria</label><br><br>
                     <select id="categorySelector" class="categorySelector">
-                        <option>Categoria</option>
+                        <% category.forEach(category => { %>
+                            <option name="<%- category.id %>" id="<%- category.id %>"><%- category.nome %></option>
+                        <% }) %>
                     </select>
+
                     <br>
                     <br>
                     <div class="clear"></div>

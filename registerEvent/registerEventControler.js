@@ -6,9 +6,14 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage, limits: { fileSize: 70 * 1024 }});
 const events = require("./ReEvent");
+const category = require("../adminControler/categoryControler/Category");
 
 router.get("/registerEvent", (req, res) => {
-    res.render("registerEvent");
+    category.findAll().then(category => {
+        res.render("registerEvent", {
+            category: category
+        });
+    })
 })
 
 router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
