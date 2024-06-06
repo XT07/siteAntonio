@@ -27,7 +27,6 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
     let eventName = req.body.eventName;
     let eventPago = req.body.eventPago === 'on' ? true : false;
     let aboutEvent = req.body.aboutEvent;
-    let categorySelector = req.body.categorySelector;
     let descriptionEvent = req.body.descriptionEvent;
     let dtInit = req.body.dtInit;
     let dtEnd = req.body.dtEnd;
@@ -36,6 +35,7 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
     let nameEventP = req.body.nameEventP;
     let aboutEventP = req.body.aboutEventP;
     let responsability = req.body.responsability === 'on' ? true : false;
+    let category = req.body.category;
 
     let imgEvent = req.file ? Buffer.from(req.file.buffer).toString('base64') : null;
 
@@ -60,7 +60,8 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
         produtor: nameEventP,
         sobreProdutor: aboutEventP,
         termos: responsability,
-        categoriaId: categorySelector
+        categoriaId: category,
+        category: category
     }).then(() => {
         res.redirect("/");
     }).catch(err => {
@@ -92,18 +93,19 @@ router.post("/deletEvent", (req, res) => {
 router.get("/editEvent/:id", (req, res) => {
     let id = req.params.id;
 
-    ReEvent.findOne({ where: { id:id } }).then(event => {
+    ReEvent.findOne({ where: { id:id }, include: [ { model: category } ] }).then(event => {
         res.render("editEvent", {
-            event:event
+            event:event,
+            category: event.category
         })
     })
 })
 
 router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
     let {
-        id, enderEvent, cep, avRua, num, complemento, bairro, city, est,
-        eventName, eventPago, aboutEvent, categorySelector, descriptionEvent,
-        dtInit, dtEnd, timeInit, timeEnd, nameEventP, aboutEventP, responsability
+        id, enderEvent, cep, num, bairro, city, est,
+        eventName, eventPago, aboutEvent, descriptionEvent,
+        dtInit, dtEnd, timeInit, timeEnd, nameEventP, aboutEventP, responsability, category
     } = req.body;
 
     eventPago = eventPago === 'on' ? true : false;
@@ -131,7 +133,8 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
         produtor: nameEventP,
         sobreProdutor: aboutEventP,
         termos: responsability,
-        categoriaId: categorySelector
+        categoriaId: category,
+        category: category
     };
 
     if (imgEvent) {

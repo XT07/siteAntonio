@@ -81,7 +81,11 @@ const event = connection.define("events", {
     categoriaId: {
         type: sequelize.INTEGER,
         allowNull: true
-    }
+    },
+    category: {
+        type: sequelize.TEXT,
+        allowNull: false
+    },
 })
 
 event.sync({ force: true }).then(() => {

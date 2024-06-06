@@ -26,4 +26,8 @@ router.post("/cidadesSave", (req, res) => {
     })
 })
 
+router.post("/cidadeDelet", (req, res) => {
+    
+})
+
 module.exports = router;
