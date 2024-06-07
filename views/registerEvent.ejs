@@ -32,7 +32,11 @@
                     <br>
                     <br>
                     <label for="city">Cidade:</label><br>
-                    <input type="text" name="city" id="city" placeholder="Informe a cidade ...">
+                    <select name="city" id="city" class="categorySelector">
+                        <% cidades.forEach(cidade => { %>
+                            <option name="<%- cidade.id %>" id="<%- cidade.id %>" value="<%- cidade.id %>"><%- cidade.nome %></option>
+                        <% }) %>
+                    </select>
                     <br>
                     <br>
                     <label for="est">Estado:</label><br>
@@ -79,7 +83,7 @@
                     <label for="categorySelector">Categoria</label><br><br>
                     <select id="category" class="categorySelector">
                         <% category.forEach(category => { %>
-                            <option name="<%- category.id %>" id="<%- category.id %>"><%- category.nome %></option>
+                            <option name="<%- category.id %>" id="<%- category.id %>" value="<%- category.id %>"><%- category.nome %></option>
                         <% }) %>
                     </select>
 

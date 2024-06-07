@@ -8,7 +8,7 @@ const category = connection.define("categorias", {
     }
 })
 
-category.sync({ force: true }).then(() => {
+category.sync({ force: false }).then(() => {
     console.log("Tabela categorias sincronizada");
 }).catch(err => {
     console.log(`Erro ao sincronizar a tabela das categorias | ${err} |`);

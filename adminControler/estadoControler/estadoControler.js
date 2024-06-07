@@ -14,6 +14,6 @@ router.post("estadoSave", (req, res) => {
     }).then(() => {
         res.send("Olá gayzinho");
     }).catch(err => {
-        console.log("Erro ao salvar o estado");
+        console.log(`Erro ao salvar o estado | ${err} |`);
     })
 })

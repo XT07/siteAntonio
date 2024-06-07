@@ -7,12 +7,16 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage, limits: { fileSize: 70 * 1024 }});
 const events = require("./ReEvent");
 const category = require("../adminControler/categoryControler/Category");
+const cidade = require("../adminControler/cidadeControler/Cidade");
 
 router.get("/registerEvent", (req, res) => {
     category.findAll().then(category => {
-        res.render("registerEvent", {
-            category: category
-        });
+        cidade.findAll().then(cidades => {
+            res.render("registerEvent", {
+                category: category,
+                cidades: cidades
+            });
+        })
     })
 })
 
@@ -36,6 +40,8 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
     let aboutEventP = req.body.aboutEventP;
     let responsability = req.body.responsability === 'on' ? true : false;
     let category = req.body.category;
+    let link = req.body.lin;
+    let whatsapp = req.body.whatsapp;
 
     let imgEvent = req.file ? Buffer.from(req.file.buffer).toString('base64') : null;
 
@@ -47,7 +53,6 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
         LocalDoEvento: localEvento,
         numero: num,
         bairro: bairro,
-        cidade: city,
         estado: est,
         imagem: imgEvent,
         dvPago: eventPago,
@@ -60,8 +65,10 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
         produtor: nameEventP,
         sobreProdutor: aboutEventP,
         termos: responsability,
-        categoriaId: category,
-        category: category
+        categoryId: category,
+        link: link,
+        whatsapp: whatsapp,
+        cidadeId: city
     }).then(() => {
         res.redirect("/");
     }).catch(err => {
@@ -94,10 +101,7 @@ router.get("/editEvent/:id", (req, res) => {
     let id = req.params.id;
 
     ReEvent.findOne({ where: { id:id }, include: [ { model: category } ] }).then(event => {
-        res.render("editEvent", {
-            event:event,
-            category: event.category
-        })
+        cidade.findAll()
     })
 })
 
@@ -105,7 +109,8 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
     let {
         id, enderEvent, cep, num, bairro, city, est,
         eventName, eventPago, aboutEvent, descriptionEvent,
-        dtInit, dtEnd, timeInit, timeEnd, nameEventP, aboutEventP, responsability, category
+        dtInit, dtEnd, timeInit, timeEnd, nameEventP, aboutEventP, responsability, category,
+        link, whatsapp
     } = req.body;
 
     eventPago = eventPago === 'on' ? true : false;
@@ -120,7 +125,6 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
         LocalDoEvento: localEvento,
         numero: num,
         bairro: bairro,
-        cidade: city,
         estado: est,
         imagem: imgEvent,
         dvPago: eventPago,
@@ -133,8 +137,10 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
         produtor: nameEventP,
         sobreProdutor: aboutEventP,
         termos: responsability,
-        categoriaId: category,
-        category: category
+        categoryId: category,
+        link: link,
+        whatsapp: whatsapp,
+        cidadeId: city
     };
 
     if (imgEvent) {

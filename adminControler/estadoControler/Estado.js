@@ -9,7 +9,7 @@ const estado = connection.define("estado", {
     }
 })
 
-estado.sync({ force: true }).then(() => {
+estado.sync({ force: false }).then(() => {
     console.log("Tabela de estados sincronizada");
 }).catch(err => {
     console.log(`Erro ao sincronizar tabela estados | ${err} |`);

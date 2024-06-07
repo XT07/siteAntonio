@@ -31,10 +31,6 @@ const event = connection.define("events", {
         type: sequelize.STRING,
         allowNull: false
     },
-    cidade: {
-        type: sequelize.TEXT,
-        allowNull: false
-    },
     estado: {
         type: sequelize.TEXT,
         allowNull: false
@@ -78,17 +74,25 @@ const event = connection.define("events", {
         type: sequelize.BOOLEAN,
         allowNull: false
     },
-    categoriaId: {
+    categoryId: {
         type: sequelize.INTEGER,
         allowNull: true
     },
-    category: {
-        type: sequelize.TEXT,
+    cidadeId: {
+        type: sequelize.INTEGER,
         allowNull: false
     },
+    link: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    whatsapp: {
+        type: sequelize.TEXT,
+        allowNull: true
+    }
 })
 
-event.sync({ force: true }).then(() => {
+event.sync({ force: false }).then(() => {
     console.log("Tabela eventos sincronizada");
 }).catch(err => {
     console.log(`Erro na sincronização da tabela de eventos | erro | ${err}`);
