@@ -74,7 +74,7 @@ const event = connection.define("events", {
         type: sequelize.BOOLEAN,
         allowNull: false
     },
-    categoryId: {
+    categoriaId: {
         type: sequelize.INTEGER,
         allowNull: true
     },
@@ -92,7 +92,7 @@ const event = connection.define("events", {
     }
 })
 
-event.sync({ force: false }).then(() => {
+event.sync({ force: true }).then(() => {
     console.log("Tabela eventos sincronizada");
 }).catch(err => {
     console.log(`Erro na sincronização da tabela de eventos | erro | ${err}`);

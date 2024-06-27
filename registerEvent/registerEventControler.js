@@ -65,7 +65,7 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
         produtor: nameEventP,
         sobreProdutor: aboutEventP,
         termos: responsability,
-        categoryId: category,
+        categoriaId: category,
         link: link,
         whatsapp: whatsapp,
         cidadeId: city
@@ -137,7 +137,7 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
         produtor: nameEventP,
         sobreProdutor: aboutEventP,
         termos: responsability,
-        categoryId: category,
+        categoriaId: category,
         link: link,
         whatsapp: whatsapp,
         cidadeId: city

@@ -3,10 +3,18 @@ const router = express.Router();
 const estado = require("./Estado");
 
 router.get("/estado", (req, res) => {
-    res.send("Olá gay");
+    estado.findAll().then(estados => {
+        res.render("estado.ejs", {
+            estados: estados
+        });
+    })
 })
 
-router.post("estadoSave", (req, res) => {
+router.get("/estadoNew", (req, res) => {
+    res.render("estadoNew.ejs");
+})
+
+router.post("/estadoSave", (req, res) => {
     let nome = req.body.nome;
 
     estado.create({
@@ -17,3 +25,13 @@ router.post("estadoSave", (req, res) => {
         console.log(`Erro ao salvar o estado | ${err} |`);
     })
 })
+
+router.get("/estadoEdit", (req, res) => {
+    res.send("olá");
+})
+
+router.post("/estadoDelet", (req, res) => {
+    res.send("olá");
+})
+
+module.exports = router;

@@ -9,6 +9,7 @@ const event = require("./registerEvent/ReEvent");
 const user = require("./adminControler/Reuser");
 const categoryControler = require("./adminControler/categoryControler/categoryControler");
 const cidadeControler = require("./adminControler/cidadeControler/cidadeControler");
+const estadoControler = require("./adminControler/estadoControler/Estado");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -29,6 +30,7 @@ app.use("/", registerEventControler);
 app.use("/", admControler);
 app.use("/", categoryControler);
 app.use("/", cidadeControler);
+app.use("/", estadoControler);
 
 app.get("/", (req, res) => {
     event.findAll({ limit: 3, order: [ [ "id","DESC" ] ], where: { dvPago: true } }).then(events => {

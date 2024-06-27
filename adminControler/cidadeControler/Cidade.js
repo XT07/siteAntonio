@@ -6,6 +6,10 @@ const cidade = connection.define("cidades", {
     nome: {
         type: sequelize.TEXT,
         allowNull: false
+    },
+    estadoId: {
+        type: sequelize.INTEGER,
+        allowNull: true
     }
 })
 
