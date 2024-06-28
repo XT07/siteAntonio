@@ -9,7 +9,7 @@ const event = require("./registerEvent/ReEvent");
 const user = require("./adminControler/Reuser");
 const categoryControler = require("./adminControler/categoryControler/categoryControler");
 const cidadeControler = require("./adminControler/cidadeControler/cidadeControler");
-const estadoControler = require("./adminControler/estadoControler/Estado");
+const estadoControler = require("./adminControler/estadoControler/estadoControler");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));

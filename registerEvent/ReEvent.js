@@ -92,7 +92,7 @@ const event = connection.define("events", {
     }
 })
 
-event.sync({ force: true }).then(() => {
+event.sync({ force: false }).then(() => {
     console.log("Tabela eventos sincronizada");
 }).catch(err => {
     console.log(`Erro na sincronização da tabela de eventos | erro | ${err}`);
