@@ -89,6 +89,10 @@ const event = connection.define("events", {
     whatsapp: {
         type: sequelize.TEXT,
         allowNull: true
+    },
+    email: {
+        type: sequelize.TEXT,
+        allowNull: true
     }
 })
 

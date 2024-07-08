@@ -26,6 +26,14 @@ router.post("/cidadesSave", (req, res) => {
     })
 })
 
+router.post("/cidadeEdit", (req, res) => {
+    
+})
+
+router.post("/cidadeUpdate", (req, res) => {
+    
+})
+
 router.post("/cidadeDelet", (req, res) => {
     
 })

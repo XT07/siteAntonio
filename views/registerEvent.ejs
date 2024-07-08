@@ -40,7 +40,13 @@
                     <br>
                     <br>
                     <label for="est">Estado:</label><br>
-                    <input type="text" name="est" id="est" placeholder="Informe o estado ...">
+
+                    <select name="est" id="est" class="categorySelector">
+                        <% est.forEach(est => { %>
+                            <option name="<%- est.id %>" id="<%- est.id %>" value="<%- est.id %>"><%- est.nome %></option>
+                        <% }) %>
+                    </select>
+
                     <br>
                     <br>
                 </div>
@@ -178,6 +184,10 @@
                     <br>
                     <label for="numZap">WhatsApp:</label><br>
                     <input type="text" id="numZap" name="numZap" style="width: 700px;">
+                    <br>
+                    <br>
+                    <label for="email">E-mail:</label><br>
+                    <input type="email" id="email" name="email" style="width: 700px;">
                     <br>
                     <br>
                 </div>
