@@ -8,14 +8,18 @@ const upload = multer({ storage: storage, limits: { fileSize: 70 * 1024 }});
 const events = require("./ReEvent");
 const category = require("../adminControler/categoryControler/Category");
 const cidade = require("../adminControler/cidadeControler/Cidade");
+const est = require("../adminControler/estadoControler/Estado");
 
 router.get("/registerEvent", (req, res) => {
     category.findAll().then(category => {
         cidade.findAll().then(cidades => {
-            res.render("registerEvent", {
-                category: category,
-                cidades: cidades
-            });
+            est.findAll().then(est => {
+                res.render("registerEvent", {
+                    category: category,
+                    cidades: cidades,
+                    est: est
+                });
+            })
         })
     })
 })
