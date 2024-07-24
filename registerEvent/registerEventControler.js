@@ -12,13 +12,20 @@ const est = require("../adminControler/estadoControler/Estado");
 const auth = require("../midleware/midleware");
 
 router.get("/registerEvent", auth, (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     category.findAll().then(category => {
         cidade.findAll().then(cidades => {
             est.findAll().then(est => {
                 res.render("registerEvent", {
                     category: category,
                     cidades: cidades,
-                    est: est
+                    est: est,
+                    conf:conf
                 });
             })
         })
@@ -82,10 +89,17 @@ router.post("/reEventSave", auth, upload.single('imgEvent'), (req, res) => {
 })
 
 router.get("/aboutEvent/:id", auth, (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     let id = parseInt(req.params.id);
     ReEvent.findOne({ where: { id:id } }).then(event => {
         res.render("aboutEvent", {
-            event:event
+            event:event,
+            conf:conf
         });
     })
 })
@@ -166,9 +180,16 @@ router.post("/editEventSave", auth, upload.single('imgEvent'), (req, res) => {
 });
 
 router.get("/eventsList", auth, (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     events.findAll({ order: [ [ "ID","DESC" ] ] }).then(events => {
         res.render("eventsList", {
-            events: events
+            events: events,
+            conf:conf
         })
     })
 })

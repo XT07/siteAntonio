@@ -1,5 +1,9 @@
 <%- include("partials/header.ejs") %>
-<%- include("partials/menu.ejs") %>
+<% if(conf == 1){ %>
+    <%- include("partials/menu2.ejs") %>
+<% }else{ %>
+    <%- include("partials/menu.ejs") %>
+<% } %>
 <br>
 <body>
     <h1 style="text-align: center;">Listagen dos estados registrados</h1>

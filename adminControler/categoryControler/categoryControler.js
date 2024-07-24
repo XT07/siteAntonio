@@ -4,15 +4,28 @@ const category = require("./Category");
 const auth = require("../../midleware/midleware");
 
 router.get("/category", auth, (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
     category.findAll({ order: [ [ "ID","DESC" ] ] }).then(categorys => {
         res.render("category", {
-            categorys: categorys
+            categorys: categorys,
+            conf:conf
         });
     })
 })
 
 router.get("/categoryNew", auth, (req, res) => {
-    res.render("categoryNew");
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+    res.render("categoryNew", {
+        conf:conf
+    });
 })
 
 router.post("/categorySave", auth, (req, res) => {
@@ -28,10 +41,17 @@ router.post("/categorySave", auth, (req, res) => {
 })
 
 router.get("/categoryEdit/:id", auth, (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     let id = parseInt(req.params.id);
     category.findOne({ where: { id:id } }).then(category => {
         res.render("categoryEdit", {
-            category: category
+            category: category,
+            conf:conf
         });
     })
 })
@@ -48,7 +68,7 @@ router.post("/categoryEditSave", auth, (req, res) => {
 router.post("/categoryDelet", auth, (req, res) => {
     let id = parseInt(req.body.id);
     category.destroy({ where: { id:id } }).then(() => {
-        res.redirect("category");
+        res.redirect("/category");
     })
 })
 

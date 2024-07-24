@@ -37,15 +37,30 @@ app.use("/", cidadeControler);
 app.use("/", estadoControler);
 
 app.get("/", (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     event.findAll({ limit: 3, order: [ [ "id","DESC" ] ], where: { dvPago: true } }).then(events => {
         res.render("home", {
-            events: events
+            events: events,
+            conf:conf
         });
     });
 });
 
 app.get("/about", (req,res) => {
-    res.render("about");
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
+    res.render("about" , {
+        conf:conf
+    });
 });
 
 app.listen(3030, () => {

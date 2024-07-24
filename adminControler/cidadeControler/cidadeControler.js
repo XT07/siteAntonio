@@ -4,15 +4,30 @@ const cidade = require("./Cidade");
 const auth = require("../../midleware/midleware");
 
 router.get("/cidades", auth, (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     cidade.findAll().then(cidades => {
         res.render("cidades", {
-            cidades: cidades
+            cidades: cidades,
+            conf:conf
         });
     })
 })
 
 router.get("/cidadesNew", auth, (req, res) => {
-    res.render("cidadesNew");
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
+    res.render("cidadesNew", {
+        conf:conf
+    });
 })
 
 router.post("/cidadesSave", auth, (req, res) => {
@@ -30,9 +45,16 @@ router.post("/cidadesSave", auth, (req, res) => {
 router.get("/cidadeEdit/:id", auth, (req, res) => {
     let id = req.params.id;
 
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     cidade.findOne({ where: {id:id} }).then(cidade => {
         res.render("cidadeEdit", {
-            cidade: cidade
+            cidade: cidade,
+            conf:conf
         });
     })
 })
@@ -42,7 +64,7 @@ router.post("/cidadeUpdate", auth, (req, res) => {
     let id = req.body.id;
 
     cidade.update({ nome: nome }, { where: {id:id}}).then(() => {
-        res.redirect("cidades");
+        res.redirect("/cidades");
     })
 })
 
@@ -50,7 +72,7 @@ router.post("/cidadeDelet", auth, (req, res) => {
     let id = req.body.id;
 
     cidade.destroy({ where: {id:id} }).then(() => {
-        res.redirect("cidades");
+        res.redirect("/cidades");
     })
 })
 

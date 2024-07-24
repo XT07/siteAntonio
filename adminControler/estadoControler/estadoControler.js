@@ -4,15 +4,30 @@ const estado = require("./Estado");
 const auth = require("../../midleware/midleware");
 
 router.get("/estado", auth, (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     estado.findAll().then(estados => {
         res.render("estado.ejs", {
-            estados: estados
+            estados: estados,
+            conf: conf
         });
     })
 })
 
 router.get("/estadoNew", auth, (req, res) => {
-    res.render("estadoNew.ejs");
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
+    res.render("estadoNew.ejs", {
+        conf: conf
+    });
 })
 
 router.post("/estadoSave", auth, (req, res) => {
@@ -30,9 +45,16 @@ router.post("/estadoSave", auth, (req, res) => {
 router.get("/estadoEdit", auth, (req, res) => {
     let estId = req.body.estId;
 
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     estado.findOne({ where: {id:estId} }).then(est => {
         res.render("estadoEdit.ejs", {
-            est:est
+            est:est,
+            conf:conf
         })
     })
 })
@@ -41,9 +63,16 @@ router.get("/estadoUpdate", auth, (req, res) => {
     let estId = req.body.estId;
     let nome = req.body.nomeEst;
 
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     estado.update({nome:nome},{ where: {id:estId} }).then(est => {
         res.render("estadoEdit.ejs", {
-            est:est
+            est:est,
+            conf:conf
         })
     })
 })

@@ -5,11 +5,27 @@ const bcrypt = require("bcryptjs");
 const auth = require("../midleware/midleware");
 
 router.get("/logAdm", (req, res) => {
-    res.render("login");
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
+    res.render("login", {
+        conf:conf
+    });
 })
 
 router.get("/admPainel", auth, (req, res) => {
-    res.render("admPainel");
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
+    res.render("admPainel", {
+        conf:conf
+    });
 })
 
 router.post("/logAuth", (req, res) => {

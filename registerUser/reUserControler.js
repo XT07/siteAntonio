@@ -4,7 +4,15 @@ const User = require("./User");
 const bcrypt = require("bcryptjs");
 
 router.get("/registerUser", (req, res) => {
-    res.render("registerUser");
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
+    res.render("registerUser", {
+        conf:conf
+    });
 })
 
 router.post("/userSave", async (req, res) => {
@@ -33,9 +41,16 @@ router.post("/userSave", async (req, res) => {
 })
 
 router.get("/userList", (req, res) => {
+    let conf = 0;
+
+    if(req.session.ad != undefined){
+        conf = 1;
+    }
+
     User.findAll().then(user => {
         res.render("userList", {
-            user: user
+            user: user,
+            conf:conf
         })
     })
 })
