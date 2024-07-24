@@ -2,15 +2,16 @@
 <%- include("partials/menu.ejs") %>
 <br>
 <body>
-    <h1 style="text-align: center;">Adicionar nova cidade</h1>
+    <h1 style="text-align: center;">Editar cidade</h1>
     <br>
     <div class="boxCategory">
-        <form method="post" action="/cidadesUpdate" onsubmit="verifyForm(event, this)">
+        <form method="post" action="/cidadeUpdate" onsubmit="verifyForm(event, this)">
             <fieldset style="padding: 30px;">
                 <label for="nomeCidade">Nome:</label><br>
-                <input type="text" id="nomeCidade" name="nomeCidade" style="width: 700px;">
+                <input type="text" value="<%- cidade.nome %>" id="nomeCidade" name="nomeCidade" style="width: 700px;">
                 <br>
                 <br>
+                <input name="id" id="id" type="hidden" value="<%- cidade.id %>">
                 <center>
                     <input type="submit" class="btnMenu" value="Criar">
                 </center>

@@ -33,12 +33,12 @@
                         <th><%- dataCriacaoFormat %></th>
                         <th><%- dataAtualizacaoFormat %></th>
                         <th>
-                            <form method="get" action="/categoryEdit/<%= cidade.id %>" onsubmit="confirmEdit(event, this)">
+                            <form method="get" action="/cidadeEdit/<%= cidade.id %>" onsubmit="confirmEdit(event, this)">
                                 <input type="submit" value="Editar" class="edit">
                             </form>
                         </th>
                         <th>
-                            <form method="post" action="/categoryDelet" onsubmit="confirmDelet(event, this)">
+                            <form method="post" action="/cidadeDelet" onsubmit="confirmDelet(event, this)">
                                 <input type="hidden" name="id" value="<%= cidade.id %>">
                                 <input type="submit" value="Deletar" class="delet">
                             </form>

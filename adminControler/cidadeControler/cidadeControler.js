@@ -26,16 +26,31 @@ router.post("/cidadesSave", (req, res) => {
     })
 })
 
-router.post("/cidadeEdit", (req, res) => {
-    
+router.get("/cidadeEdit/:id", (req, res) => {
+    let id = req.params.id;
+
+    cidade.findOne({ where: {id:id} }).then(cidade => {
+        res.render("cidadeEdit", {
+            cidade: cidade
+        });
+    })
 })
 
 router.post("/cidadeUpdate", (req, res) => {
-    
+    let nome = req.body.nomeCidade;
+    let id = req.body.id;
+
+    cidade.update({ nome: nome }, { where: {id:id}}).then(() => {
+        res.redirect("cidades");
+    })
 })
 
 router.post("/cidadeDelet", (req, res) => {
-    
+    let id = req.body.id;
+
+    cidade.destroy({ where: {id:id} }).then(() => {
+        res.redirect("cidades");
+    })
 })
 
 module.exports = router;
