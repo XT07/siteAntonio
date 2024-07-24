@@ -9,8 +9,9 @@ const events = require("./ReEvent");
 const category = require("../adminControler/categoryControler/Category");
 const cidade = require("../adminControler/cidadeControler/Cidade");
 const est = require("../adminControler/estadoControler/Estado");
+const auth = require("../midleware/midleware");
 
-router.get("/registerEvent", (req, res) => {
+router.get("/registerEvent", auth, (req, res) => {
     category.findAll().then(category => {
         cidade.findAll().then(cidades => {
             est.findAll().then(est => {
@@ -24,7 +25,7 @@ router.get("/registerEvent", (req, res) => {
     })
 })
 
-router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
+router.post("/reEventSave", auth, upload.single('imgEvent'), (req, res) => {
     let enderEvent = req.body.enderEvent;
     let cep = req.body.cep;
     let localEvento = req.body.localEvento;
@@ -80,7 +81,7 @@ router.post("/reEventSave", upload.single('imgEvent'), (req, res) => {
     })
 })
 
-router.get("/aboutEvent/:id", (req, res) => {
+router.get("/aboutEvent/:id", auth, (req, res) => {
     let id = parseInt(req.params.id);
     ReEvent.findOne({ where: { id:id } }).then(event => {
         res.render("aboutEvent", {
@@ -89,7 +90,7 @@ router.get("/aboutEvent/:id", (req, res) => {
     })
 })
 
-router.post("/deletEvent", (req, res) => {
+router.post("/deletEvent", auth, (req, res) => {
     let id = req.body.id;
     if(!isNaN(id)){
         ReEvent.destroy({ where: {id:id} }).then(() => {
@@ -101,7 +102,7 @@ router.post("/deletEvent", (req, res) => {
     }
 })
 
-router.get("/editEvent/:id", (req, res) => {
+router.get("/editEvent/:id", auth, (req, res) => {
     let id = req.params.id;
 
     ReEvent.findOne({ where: { id:id }, include: [ { model: category } ] }).then(event => {
@@ -114,7 +115,7 @@ router.get("/editEvent/:id", (req, res) => {
     })
 })
 
-router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
+router.post("/editEventSave", auth, upload.single('imgEvent'), (req, res) => {
     let {
         id, enderEvent, cep, num, bairro, city, est,
         eventName, eventPago, aboutEvent, descriptionEvent,
@@ -164,7 +165,7 @@ router.post("/editEventSave", upload.single('imgEvent'), (req, res) => {
         });
 });
 
-router.get("/eventsList", (req, res) => {
+router.get("/eventsList", auth, (req, res) => {
     events.findAll({ order: [ [ "ID","DESC" ] ] }).then(events => {
         res.render("eventsList", {
             events: events

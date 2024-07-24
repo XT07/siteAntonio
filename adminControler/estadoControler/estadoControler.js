@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const estado = require("./Estado");
+const auth = require("../../midleware/midleware");
 
-router.get("/estado", (req, res) => {
+router.get("/estado", auth, (req, res) => {
     estado.findAll().then(estados => {
         res.render("estado.ejs", {
             estados: estados
@@ -10,11 +11,11 @@ router.get("/estado", (req, res) => {
     })
 })
 
-router.get("/estadoNew", (req, res) => {
+router.get("/estadoNew", auth, (req, res) => {
     res.render("estadoNew.ejs");
 })
 
-router.post("/estadoSave", (req, res) => {
+router.post("/estadoSave", auth, (req, res) => {
     let nome = req.body.nomeEst;
 
     estado.create({
@@ -26,7 +27,7 @@ router.post("/estadoSave", (req, res) => {
     })
 })
 
-router.get("/estadoEdit", (req, res) => {
+router.get("/estadoEdit", auth, (req, res) => {
     let estId = req.body.estId;
 
     estado.findOne({ where: {id:estId} }).then(est => {
@@ -36,7 +37,7 @@ router.get("/estadoEdit", (req, res) => {
     })
 })
 
-router.get("/estadoUpdate", (req, res) => {
+router.get("/estadoUpdate", auth, (req, res) => {
     let estId = req.body.estId;
     let nome = req.body.nomeEst;
 
@@ -47,7 +48,7 @@ router.get("/estadoUpdate", (req, res) => {
     })
 })
 
-router.post("/estadoDelet", (req, res) => {
+router.post("/estadoDelet", auth, (req, res) => {
     let estId = req.body.estId;
 
     estado.destroy({ where: {id:estId} }).then(() => {

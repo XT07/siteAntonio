@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const cidade = require("./Cidade");
+const auth = require("../../midleware/midleware");
 
-router.get("/cidades", (req, res) => {
+router.get("/cidades", auth, (req, res) => {
     cidade.findAll().then(cidades => {
         res.render("cidades", {
             cidades: cidades
@@ -10,11 +11,11 @@ router.get("/cidades", (req, res) => {
     })
 })
 
-router.get("/cidadesNew", (req, res) => {
+router.get("/cidadesNew", auth, (req, res) => {
     res.render("cidadesNew");
 })
 
-router.post("/cidadesSave", (req, res) => {
+router.post("/cidadesSave", auth, (req, res) => {
     let nome = req.body.nomeCidade;
 
     cidade.create({
@@ -26,7 +27,7 @@ router.post("/cidadesSave", (req, res) => {
     })
 })
 
-router.get("/cidadeEdit/:id", (req, res) => {
+router.get("/cidadeEdit/:id", auth, (req, res) => {
     let id = req.params.id;
 
     cidade.findOne({ where: {id:id} }).then(cidade => {
@@ -36,7 +37,7 @@ router.get("/cidadeEdit/:id", (req, res) => {
     })
 })
 
-router.post("/cidadeUpdate", (req, res) => {
+router.post("/cidadeUpdate", auth, (req, res) => {
     let nome = req.body.nomeCidade;
     let id = req.body.id;
 
@@ -45,7 +46,7 @@ router.post("/cidadeUpdate", (req, res) => {
     })
 })
 
-router.post("/cidadeDelet", (req, res) => {
+router.post("/cidadeDelet", auth, (req, res) => {
     let id = req.body.id;
 
     cidade.destroy({ where: {id:id} }).then(() => {

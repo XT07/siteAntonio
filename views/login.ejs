@@ -2,14 +2,14 @@
 <%- include("partials/menu.ejs") %>
 <body>
     <div class="containerLog">
-        <form method="post" action="" onsubmit="confForm(event, this)">
+        <form method="post" action="/logAuth" onsubmit="confForm(event, this)">
             <fieldset>
                 <legend>Log-in</legend>
                 <h3>Login exclusivo para administradores (temporario)</h3>
                 <br>
                 <br>
                 <label for="log">Log</label><br>
-                <input type="text" name="log" id="log" placeholder="Log de admin" style="width: 99%;">
+                <input type="email" name="log" id="log" placeholder="Log de admin" style="width: 99%;">
                 <br>
                 <br>
                 <label for="pass">Senha</label><br>
@@ -76,6 +76,10 @@
 
     function confForm(e, form){
         e.preventDefault();
+
+        if(log != "" && pass != ""){
+            form.submit();
+        }
     }
 </script>
 <%- include("partials/footer.ejs") %>

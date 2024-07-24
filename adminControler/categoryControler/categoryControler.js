@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const category = require("./Category");
+const auth = require("../../midleware/midleware");
 
-router.get("/category", (req, res) => {
+router.get("/category", auth, (req, res) => {
     category.findAll({ order: [ [ "ID","DESC" ] ] }).then(categorys => {
         res.render("category", {
             categorys: categorys
@@ -10,11 +11,11 @@ router.get("/category", (req, res) => {
     })
 })
 
-router.get("/categoryNew", (req, res) => {
+router.get("/categoryNew", auth, (req, res) => {
     res.render("categoryNew");
 })
 
-router.post("/categorySave", (req, res) => {
+router.post("/categorySave", auth, (req, res) => {
     let nomeCategory = req.body.nomeCategory;
 
     category.create({
@@ -26,7 +27,7 @@ router.post("/categorySave", (req, res) => {
     })
 })
 
-router.get("/categoryEdit/:id", (req, res) => {
+router.get("/categoryEdit/:id", auth, (req, res) => {
     let id = parseInt(req.params.id);
     category.findOne({ where: { id:id } }).then(category => {
         res.render("categoryEdit", {
@@ -35,7 +36,7 @@ router.get("/categoryEdit/:id", (req, res) => {
     })
 })
 
-router.post("/categoryEditSave", (req, res) => {
+router.post("/categoryEditSave", auth, (req, res) => {
     let id = parseInt(req.body.id);
     let nome = req.body.nomeCategory;
 
@@ -44,7 +45,7 @@ router.post("/categoryEditSave", (req, res) => {
     })
 })
 
-router.post("/categoryDelet", (req, res) => {
+router.post("/categoryDelet", auth, (req, res) => {
     let id = parseInt(req.body.id);
     category.destroy({ where: { id:id } }).then(() => {
         res.redirect("category");
