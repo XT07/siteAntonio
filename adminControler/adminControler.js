@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const users = require("./Reuser");
+const users = require("../registerUser/User");
 
 router.get("/logAdm", (req, res) => {
     res.render("login");

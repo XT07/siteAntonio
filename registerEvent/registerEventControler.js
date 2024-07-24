@@ -105,7 +105,12 @@ router.get("/editEvent/:id", (req, res) => {
     let id = req.params.id;
 
     ReEvent.findOne({ where: { id:id }, include: [ { model: category } ] }).then(event => {
-        cidade.findAll()
+        cidade.findAll().then(cidade => {
+            res.redirect("editEvent", {
+                event: event,
+                cidade: cidade
+            })
+        })
     })
 })
 

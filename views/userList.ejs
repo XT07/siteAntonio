@@ -1,0 +1,75 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/menu.ejs") %>
+<br>
+<body>
+    <h1 style="text-align: center;">Listagen dos usuários registrados</h1>
+    <br><br>
+    <div class="list">
+        <a class="btnMenu" href="/registerUser" style="margin-left: 90px;">Adicionar novo usuário</a>
+        <br><br>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td><b>Nome</b></td>
+                    <td><b>Data de criação</b></td>
+                    <td><b>Data de última atualização</b></td>
+                    <!-- <td><b>Editar</b></td> -->
+                    <td><b>Excluir</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                <% user.forEach(user => { %>
+                    <%
+                        const utcDateCreation = new Date(user.createdAt.getTime() + (user.createdAt.getTimezoneOffset() * 60000));
+                        const options2 = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+                        const dataCriacaoFormat = utcDateCreation.toLocaleDateString('pt-BR', options2);
+
+                        const utcDateUpdated = new Date(user.updatedAt.getTime() + (user.updatedAt.getTimezoneOffset() * 60000));
+                        const options3 = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+                        const dataAtualizacaoFormat = utcDateUpdated.toLocaleDateString('pt-BR', options3);
+                    %>
+                    <tr>
+                        <th><%- user.nome %></th>
+                        <th><%- dataCriacaoFormat %></th>
+                        <th><%- dataAtualizacaoFormat %></th>
+                        <!--
+                        <th>
+                            <form method="get" action="/cidadeEdit/<%= user.id %>" onsubmit="confirmEdit(event, this)">
+                                <input type="submit" value="Editar" class="edit">
+                            </form>
+                        </th>
+                        -->
+                        <th>
+                            <form method="post" action="/userDelet" onsubmit="confirmDelet(event, this)">
+                                <input type="hidden" name="id" value="<%= user.id %>">
+                                <input type="submit" value="Deletar" class="delet">
+                            </form>
+                        </th>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+<%- include("partials/footer.ejs") %>
+<script>
+    function confirmDelet(e, form){
+        e.preventDefault();
+
+        let conf = window.confirm(`Tem certeza que quer deletar esse usuário ?`);
+
+        if(conf === true){
+            form.submit();
+        }
+    }
+    function confirmEdit(e, form){
+        e.preventDefault();
+
+        let conf = window.confirm(`Tem certeza que quer editar esse evento ?`);
+
+        if(conf === true){
+            form.submit();
+        }
+    }
+</script>
+</html>
