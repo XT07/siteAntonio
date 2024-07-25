@@ -8,6 +8,8 @@ router.get("/estado", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     estado.findAll().then(estados => {
@@ -23,6 +25,8 @@ router.get("/estadoNew", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     res.render("estadoNew.ejs", {
@@ -49,6 +53,8 @@ router.get("/estadoEdit", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     estado.findOne({ where: {id:estId} }).then(est => {
@@ -67,6 +73,8 @@ router.get("/estadoUpdate", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     estado.update({nome:nome},{ where: {id:estId} }).then(est => {

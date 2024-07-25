@@ -8,6 +8,8 @@ router.get("/category", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
     category.findAll({ order: [ [ "ID","DESC" ] ] }).then(categorys => {
         res.render("category", {

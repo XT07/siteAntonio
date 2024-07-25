@@ -1,10 +1,10 @@
 <%- include("partials/header.ejs") %>
-<% if(conf == 1){ %>
-    <%- include("partials/menu2.ejs") %>
-<% }else{ %>
-    <%- include("partials/menu.ejs") %>
-<% } %>
 <body>
+    <% if(conf == 1){ %>
+        <%- include("partials/menu.ejs") %>
+    <% }else{ %>
+        <%- include("partials/menu2.ejs") %>
+    <% } %>
     <div class="container">
         <form method="post" action="/reEventSave" onsubmit="confForm(event, this)" enctype="multipart/form-data">
             <fieldset>

@@ -32,6 +32,15 @@
             <li>
                 <a href="/registerEvent"><button class="btnMenu"><b style="color: white;">Registre um evento</b></button></a>
             </li>
+            <% if(conf == 1){ %>
+                <li>
+                    <a href="/logout"><button class="btnMenu"><b style="color: white;">Logout</b></button></a>
+                </li>
+            <% }else if(conf == 2){ %>
+                <li>
+                    <a href="/logout"><button class="btnMenu"><b style="color: white;">Logout</b></button></a>
+                </li>
+            <% } %>
         </ul>
     </center>
     <div class="clear"></div>

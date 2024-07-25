@@ -8,6 +8,8 @@ router.get("/cidades", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     cidade.findAll().then(cidades => {
@@ -23,6 +25,8 @@ router.get("/cidadesNew", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     res.render("cidadesNew", {
@@ -49,6 +53,8 @@ router.get("/cidadeEdit/:id", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     cidade.findOne({ where: {id:id} }).then(cidade => {

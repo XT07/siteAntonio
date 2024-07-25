@@ -8,6 +8,8 @@ router.get("/registerUser", (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     res.render("registerUser", {
@@ -33,7 +35,7 @@ router.post("/userSave", async (req, res) => {
             telefone: telefone,
             senha: bSenha
         }).then(() => {
-            res.redirect("userList");
+            res.redirect("/");
         })
     }else {
         res.status(400).send("E-mail já cadastrado");
@@ -45,6 +47,8 @@ router.get("/userList", (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
     }
 
     User.findAll().then(user => {
@@ -63,4 +67,14 @@ router.post("/userDelet", (req, res) => {
     })
 })
 
+router.get("/logout", (req, res) => {
+    if(req.session.ad != undefined){
+        req.session.ad = undefined;
+
+        res.redirect("/");
+    }else{
+        req.session.user = undefined;
+        res.redirect("/");
+    }
+})
 module.exports = router;
