@@ -41,6 +41,10 @@ app.get("/", (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
+    }else {
+        conf = 0;
     }
 
     event.findAll({ limit: 3, order: [ [ "id","DESC" ] ], where: { dvPago: true } }).then(events => {
@@ -56,6 +60,10 @@ app.get("/about", (req,res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
+    }else {
+        conf = 0;
     }
 
     res.render("about" , {

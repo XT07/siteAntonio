@@ -11,6 +11,8 @@ router.get("/logAdm", (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     res.render("login", {
@@ -25,6 +27,8 @@ router.get("/admPainel", auth, (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     res.render("admPainel", {

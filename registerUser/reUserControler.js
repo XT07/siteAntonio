@@ -10,6 +10,8 @@ router.get("/registerUser", (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     res.render("registerUser", {
@@ -49,6 +51,8 @@ router.get("/userList", (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     User.findAll().then(user => {

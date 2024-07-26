@@ -10,6 +10,8 @@ router.get("/cidades", auth, (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     cidade.findAll().then(cidades => {
@@ -27,6 +29,8 @@ router.get("/cidadesNew", auth, (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     res.render("cidadesNew", {
@@ -47,14 +51,14 @@ router.post("/cidadesSave", auth, (req, res) => {
 })
 
 router.get("/cidadeEdit/:id", auth, (req, res) => {
-    let id = req.params.id;
-
     let conf = 0;
 
     if(req.session.ad != undefined){
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     cidade.findOne({ where: {id:id} }).then(cidade => {

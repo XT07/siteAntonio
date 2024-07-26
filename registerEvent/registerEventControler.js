@@ -18,6 +18,8 @@ router.get("/registerEvent", auth, (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     category.findAll().then(category => {
@@ -97,6 +99,8 @@ router.get("/aboutEvent/:id", auth, (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     let id = parseInt(req.params.id);
@@ -190,6 +194,8 @@ router.get("/eventsList", auth, (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
 
     events.findAll({ order: [ [ "ID","DESC" ] ] }).then(events => {

@@ -10,6 +10,8 @@ router.get("/category", auth, (req, res) => {
         conf = 1;
     }else if(req.session.user != undefined){
         conf = 2;        
+    }else {
+        conf = 0;
     }
     category.findAll({ order: [ [ "ID","DESC" ] ] }).then(categorys => {
         res.render("category", {
@@ -24,6 +26,10 @@ router.get("/categoryNew", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
+    }else {
+        conf = 0;
     }
     res.render("categoryNew", {
         conf:conf
@@ -47,6 +53,10 @@ router.get("/categoryEdit/:id", auth, (req, res) => {
 
     if(req.session.ad != undefined){
         conf = 1;
+    }else if(req.session.user != undefined){
+        conf = 2;        
+    }else {
+        conf = 0;
     }
 
     let id = parseInt(req.params.id);
